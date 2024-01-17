@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +10,28 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
+  form!: FormGroup;
+  actions$!: Observable<any[]>;
+
+  fb = inject(FormBuilder);
+  http = inject(HttpClient)
+
   constructor() {}
 
+  ngOnInit() {
+    this.initForm();
+  }
+
+  initForm() {
+    this.form = this.fb.group({
+      amount: [null, [Validators.required]],
+      notes: [null, [Validators.required]],
+      types: [null, [Validators.required]]
+    })
+  }
+
+  create() {
+    this.actions$ = this.http.get<any[]>('http://localhost:8080/api/action');
+    this.actions$.subscribe(res => console.log(res))
+  }
 }
