@@ -7,6 +7,8 @@ import { Tab1Page } from './tab1.page';
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MaskitoModule } from '@maskito/angular';
+
 @NgModule({
   imports: [
     IonicModule,
@@ -14,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     Tab1PageRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MaskitoModule
   ],
   declarations: [Tab1Page]
 })

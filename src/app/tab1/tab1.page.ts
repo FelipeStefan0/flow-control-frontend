@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,7 +12,8 @@ import { Observable } from 'rxjs';
 export class Tab1Page {
 
   form!: FormGroup;
-  actions$!: Observable<any[]>;
+  actions$!: Observable<any>;
+  params!: any[];
 
   fb = inject(FormBuilder);
   http = inject(HttpClient)
@@ -20,6 +22,7 @@ export class Tab1Page {
 
   ngOnInit() {
     this.initForm();
+    this.list();
   }
 
   initForm() {
@@ -31,7 +34,17 @@ export class Tab1Page {
   }
 
   create() {
-    this.actions$ = this.http.get<any[]>('http://localhost:8080/api/action');
-    this.actions$.subscribe(res => console.log(res))
+    this.params = this.form.value;
+    this.http.post('http://localhost:8080/api/action', this.params).subscribe(() => this.list());
   }
+
+  list() {
+    this.actions$ = this.http.get<any[]>('http://localhost:8080/api/action');
+  }
+
+  readonly amountMask: MaskitoOptions = {
+    mask: ['R$', ' ', /\d{5}/, '.', /\d/, /\d/]
+  }
+
+  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
 }

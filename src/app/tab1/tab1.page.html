@@ -1,7 +1,7 @@
 <ion-content class="content" [fullscreen]="true">
   <form [formGroup]="form">
-    <ion-input formControlName="amount" label="Valor" labelPlacement="floating" placeholder="00.00" [clearInput]="true"
-      fill="outline">
+    <ion-input formControlName="amount" label="Valor" labelPlacement="floating" placeholder="R$ 50.00" [clearInput]="true"
+      fill="outline" [maskito]="amountMask" [maskitoElement]="maskPredicate">
     </ion-input>
     <ion-input formControlName="notes" label="Nota" labelPlacement="floating" placeholder="Serviço realizado"
       [clearInput]="true" fill="outline">
@@ -15,4 +15,13 @@
       <ion-icon name="add-outline"></ion-icon>
     </ion-button>
   </form>
+  <div *ngIf="actions$ | async as actions">
+    <div class="list" *ngFor="let action of actions.data">
+      <p>{{action.amount}}</p>
+      <p>{{action.notes}}</p>
+      <p [ngClass]="action.types == 'IN' ? 'in' : 'out'">
+        {{action.types == 'IN' ? '+ Entrada' : '- Saída'}}
+      </p>
+    </div>
+  </div>
 </ion-content>
