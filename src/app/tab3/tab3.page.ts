@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Observable, map } from 'rxjs';
+import { ActionService } from '../services/action.service';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +9,15 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  actions$!: Observable<any>;
 
+  service = inject(ActionService);
+
+  constructor() {
+    this.list();
+  }
+
+  list() {
+    this.actions$ = this.service.listAll().pipe(map((res:any) => {return res.data}));
+  }
 }
