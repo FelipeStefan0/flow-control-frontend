@@ -1,13 +1,18 @@
-.list {
+ion-content {
+    ion-card {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        align-items: center;
 
-    display: grid;
-    grid-template-columns: .3fr repeat(2, 1fr);
+        ion-card-title {
+                text-align: center;
+            }
+        }
+        }
 
-    .in {
-        color: green;
-    }
-
-    .out {
-        color: red;
-    }
+.my-ion-card {
+    display: inline !important;
+    width: 100%;
+    height: 30%;
 }

@@ -1,27 +1,20 @@
-<ion-content class="content" [fullscreen]="true">
-  <form [formGroup]="form">
-    <ion-input formControlName="amount" label="Valor" labelPlacement="floating" placeholder="R$ 50.00" [clearInput]="true"
-      fill="outline" [maskito]="amountMask" [maskitoElement]="maskPredicate">
-    </ion-input>
-    <ion-input formControlName="notes" label="Nota" labelPlacement="floating" placeholder="Serviço realizado"
-      [clearInput]="true" fill="outline">
-    </ion-input>
-    <ion-select label="Escolha a ação" labelPlacement="floating" formControlName="types">
-      <ion-select-option value="0">Entrada</ion-select-option>
-      <ion-select-option value="1">Saída</ion-select-option>
-    </ion-select>
-    <ion-button (click)="create()">
-      Adicionar
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-button>
-  </form>
-  <div *ngIf="actions$ | async as actions">
-    <div class="list" *ngFor="let action of actions.data">
-      <p>{{action.amount}}</p>
-      <p>{{action.notes}}</p>
-      <p [ngClass]="action.types == 'IN' ? 'in' : 'out'">
-        {{action.types == 'IN' ? '+ Entrada' : '- Saída'}}
-      </p>
-    </div>
-  </div>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card class="my-ion-card">
+    <ion-card-header class="ion-text-center">
+      <ion-card-subtitle>{{month}} - {{year}}</ion-card-subtitle>
+      <ion-card-title>Finanças Atuais</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+  <ion-card [routerLink]="['/tabs/tab2']" color="primary">
+    <ion-card-header>
+      <ion-card-title>Registrar</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card [routerLink]="['/tabs/tab3']" color="primary">
+    <ion-card-header>
+      <ion-card-title>Listagem</ion-card-title>
+    </ion-card-header>
+  </ion-card>
 </ion-content>
