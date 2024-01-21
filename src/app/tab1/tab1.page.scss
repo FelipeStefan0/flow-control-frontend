@@ -16,3 +16,8 @@ ion-content {
     width: 100%;
     height: 30%;
 }
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
