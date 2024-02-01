@@ -21,8 +21,8 @@ export class ActionService {
     return this.http.get<any>(`${environment.server}${this.endpoints.root()}`);
   }
 
-  public create(params: Action[]): Observable<any> {
-    return this.http.post(`${environment.server}${this.endpoints.root()}`, {params})
+  public create(params: any): Observable<any> {
+    return this.http.post(`${environment.server}${this.endpoints.root()}`, params)
   }
 
   public delete(id: number) {
@@ -30,6 +30,6 @@ export class ActionService {
   } 
 
   public edit(params: Action): Observable<any> {
-    return this.http.put(`${environment.server}${this.endpoints.root()}`, {params})
+    return this.http.put(`${environment.server}${this.endpoints.root()}`, params)
   }
 }
