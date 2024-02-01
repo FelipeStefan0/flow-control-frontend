@@ -13,7 +13,6 @@ import { ActionService } from '../services/action.service';
 export class Tab2Page {
 
   form!: FormGroup;
-  params!: any[];
 
   fb = inject(FormBuilder);
   service = inject(ActionService);
@@ -26,29 +25,17 @@ export class Tab2Page {
 
   initForm() {
     this.form = this.fb.group({
-      amount: [null, [Validators.required]],
-      notes: [null, [Validators.required]],
-      types: [null, [Validators.required]]
+      amount: ["", [Validators.required]],
+      notes: ["", [Validators.required]],
+      types: ["", [Validators.required]]
     })
   }
 
-  // readonly amountMask: MaskitoOptions = {
-  //   mask: ['R$', ' ', /\d{5}/, '.', /\d/, /\d/]
-  // }
-
-  // readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
-
-
   create() {
-    this.params = this.form.value;
-    this.service.create(this.params).subscribe((res:any) => console.log(res))
+    this.service.create(this.form.value).subscribe();
   }
 
   clear() {
-    this.form.setValue({
-      amount: "",
-      notes: "",
-      types: ""
-    })
+    this.initForm();
   }
 }

@@ -1,4 +1,6 @@
 <ion-content [fullscreen]="true" class="ion-padding">
+  <h2>Registro de Informações</h2>
+  <div class="line"></div>
   <form [formGroup]="form">
     <ion-input formControlName="amount" label="Valor" labelPlacement="floating" placeholder="R$ 50.00"
       [clearInput]="true" fill="outline">
@@ -6,17 +8,16 @@
     <ion-input formControlName="notes" label="Nota" labelPlacement="floating" placeholder="Serviço realizado"
       [clearInput]="true" fill="outline">
     </ion-input>
-    <ion-select label="Escolha a ação" labelPlacement="floating" formControlName="types">
+    <ion-select label="Escolha a ação" labelPlacement="floating" formControlName="types" fill="outline">
       <ion-select-option value="0">Entrada</ion-select-option>
       <ion-select-option value="1">Saída</ion-select-option>
     </ion-select>
     <div class="ion-margin-top">
-      <ion-button (click)="create()">
-        Adicionar
-        <ion-icon name="add-outline"></ion-icon>
-      </ion-button>
       <ion-button (click)="clear()" color="danger">
         Limpar
+      </ion-button>
+      <ion-button (click)="create()" [disabled]="form.invalid">
+        Registrar
       </ion-button>
     </div>
   </form>
