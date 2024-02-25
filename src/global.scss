@@ -25,16 +25,30 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    // Project Colors
-    --background: var(--ion-color-light);
-    --principal-dark-blue: #163361;
-    --lines: #e7e7e7;
+    --background-principal: #e8e8e8;
+    --background-secondary: #e0e0e0;
+
+    --button-primary: #4890c5;
+    --button-secondary: #da5c5c;
+    --button-tertiary: #d3d3d3;
+
+    --lines: #b1b1b1;
+
+    --font-primary: #2c2c2c;
+    --font-secondary: #545454;
+    --font-tertiary: #ffffff;
+    --font-quaternary: #aaaaaa;
+    --font-success: #4ee94d;
+    --font-failure: #8c2c2c;
+
+    --font-family: "Poppins";
 }
 
 
 ion-content {
-    --background: var(--background);
+    --background: var(--background-principal);
+    --ion-font-family: var(--font-family);
 }
