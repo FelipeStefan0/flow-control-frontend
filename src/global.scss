@@ -45,10 +45,27 @@
     --font-failure: #8c2c2c;
 
     --font-family: "Poppins";
+
+    --filter-to-white: invert(93%) sepia(39%) saturate(1%) hue-rotate(171deg) brightness(107%) contrast(101%);
 }
 
 
 ion-content {
     --background: var(--background-principal);
     --ion-font-family: var(--font-family);
+}
+
+button {
+    font-size: 1rem;
+    color: var(--font-tertiary);
+    border-radius: 4px;
+    padding: 14px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:disabled {
+    background-color: var(--button-tertiary);
+    color: var(--lines);
 }
