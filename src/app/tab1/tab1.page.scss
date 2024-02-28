@@ -1,23 +1,111 @@
-ion-content {
-    ion-card {
-        width: 150px;
-        height: 150px;
+.datepicker {
+    width: 100%;
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    #year {
+        color: var(--font-secondary);
+        font-size: .875rem;
+    }
+
+    #month {
+        color: var(--font-primary);
+        font-size: 1.5rem;
         display: flex;
         align-items: center;
 
-        ion-card-title {
-                text-align: center;
-            }
+        img {
+            margin-left: .5rem;
         }
+    }
+}
+
+.datepicker_menu {
+    background-color: #00000017;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(1px);
+    padding-top: 90px;
+
+    & > div {
+        background-color: var(--background-secondary);
+        width: 12.5rem;
+        height: 20vh;
+        padding: .75rem 1.5rem;
+        border-radius: 1px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        line-height: 1;
+        
+        div {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            row-gap: 0.5rem;
         }
 
-.my-ion-card {
-    display: inline !important;
-    width: 100%;
-    height: 30%;
+        #hr {
+            height: 100%;
+            border: 1px solid var(--lines);
+        }
+    }
+}
+
+.report_card {
+    background-color: var(--background-secondary);
+    margin: 1.5rem 0 2.5rem 0;
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+
+    p {
+        display: flex;
+        justify-content: space-between;
+
+        &:first-child {
+            color: var(--font-success);
+            margin-bottom: 4px;
+        }
+
+        &:nth-child(2) {
+            color: var(--font-failure);
+            margin-bottom: 4px;
+        }
+
+        &:last-child {
+            color: var(--font-primary);
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+    }
+
+    hr {
+        background-color: var(--lines);
+        margin: .75rem 0;
+    }
 }
 
 .buttons {
     display: flex;
     flex-direction: column;
+    row-gap: 1.25rem;
+
+    button {
+        background-color: var(--button-primary);
+
+        img {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-left: 4px;
+            filter: var(--filter-to-white);
+        }
+    }
 }

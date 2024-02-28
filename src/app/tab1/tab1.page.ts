@@ -10,6 +10,8 @@ export class Tab1Page {
   year!: number;
   month!: string;
 
+  openedDatepicker: boolean = false;
+
   constructor() {}
 
   ngOnInit() {
@@ -24,5 +26,9 @@ export class Tab1Page {
       if (Object.values(Month).indexOf(Object.values(Month)[i]) == currentMonth)
         return Object.values(Month)[i].toString();
     return "";
+  }
+
+  openDatepicker() {
+    this.openedDatepicker = !this.openedDatepicker;
   }
 }
