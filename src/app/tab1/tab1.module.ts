@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
+import { DatepickerComponent } from '../components/datepicker/datepicker.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
     CommonModule,
     FormsModule,
     Tab1PageRoutingModule,
+    DatepickerComponent
   ],
   declarations: [Tab1Page]
 })

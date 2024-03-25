@@ -1,0 +1,22 @@
+<div class="datepicker" (click)="openDatepicker()">
+  <p id="year">2024</p>
+  <p id="month">Fevereiro <img src="/assets/icons/selector.svg" alt="" /></p>
+</div>
+
+<div
+  class="datepicker_menu"
+  *ngIf="openedDatepicker"
+>
+  <div>
+    <ion-datetime
+      presentation="month-year"
+      locale="pt-br"
+      (ionCancel)="openDatepicker()"
+      (ionChange)="getDataFromMonthAndYear($event)"
+      [showDefaultButtons]="true"
+      done-text="Salvar"
+      cancel-text="Cancelar"
+      [min]="'2024-01-01'"
+    ></ion-datetime>
+  </div>
+</div>

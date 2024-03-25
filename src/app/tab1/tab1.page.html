@@ -1,9 +1,5 @@
 <ion-content [fullscreen]="true">
-  <div class="datepicker" (click)="openDatepicker()">
-    <p id="year">2024</p>
-    <p id="month">Fevereiro <img src="/assets/icons/selector.svg" alt=""></p>
-  </div>
-
+  <app-datepicker></app-datepicker>
   <div class="report_card">
     <p>
       Entradas: + R$ 
@@ -31,23 +27,3 @@
     </button>
   </div>
 </ion-content>
-
-<div class="datepicker_menu" *ngIf="openedDatepicker" (click)="openDatepicker()">
-  <div>
-    <div class="year">
-      <span class="datepicker_selection">2024</span>
-      <span>2025</span>
-      <span>2026</span>
-      <span>2027</span>
-      <span>2028</span>
-    </div>
-    <div id="hr"></div>
-    <div class="month">
-      <span>Janeiro</span>
-      <span class="datepicker_selection">Fevereiro</span>
-      <span>Março</span>
-      <span>Abril</span>
-      <span>Maio</span>
-    </div>
-  </div>
-</div>
