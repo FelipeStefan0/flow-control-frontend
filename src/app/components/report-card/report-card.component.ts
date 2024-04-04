@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Report } from 'src/app/models/Report';
 
 @Component({
   selector: 'app-report-card',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   standalone: true
 })
 export class ReportCardComponent  implements OnInit {
+
+  @Input() report!: Report;
 
   constructor() { }
 

@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <app-datepicker (emitFilterValue)="emitFilterValue($event)"></app-datepicker>
-  <app-report-card></app-report-card>
+  <app-report-card [report]="report"></app-report-card>
 
   <div class="buttons">
     <button [routerLink]="['/tabs/tab2']">
