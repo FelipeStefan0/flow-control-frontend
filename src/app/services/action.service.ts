@@ -12,7 +12,7 @@ export class ActionService {
   http = inject(HttpClient);
 
   private endpoints = {
-    root: () => `/action`
+    root: () => `/actions`
   }
 
   constructor() { }
