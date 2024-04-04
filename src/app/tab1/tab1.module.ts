@@ -6,6 +6,7 @@ import { Tab1Page } from './tab1.page';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { DatepickerComponent } from '../components/datepicker/datepicker.component';
+import { ReportCardComponent } from '../components/report-card/report-card.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { DatepickerComponent } from '../components/datepicker/datepicker.compone
     CommonModule,
     FormsModule,
     Tab1PageRoutingModule,
-    DatepickerComponent
+    DatepickerComponent,
+    ReportCardComponent
   ],
   declarations: [Tab1Page]
 })

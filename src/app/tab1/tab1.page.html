@@ -1,20 +1,6 @@
 <ion-content [fullscreen]="true">
   <app-datepicker (emitFilterValue)="emitFilterValue($event)"></app-datepicker>
-  <div class="report_card">
-    <p>
-      Entradas: + R$ 
-      <span> 325,00</span>
-    </p>
-    <p>
-      Saídas: - R$ 
-      <span> 50,00</span>
-    </p>
-    <hr>
-    <p>
-      Total: R$ 
-      <span> 275,00</span>
-    </p>
-  </div>
+  <app-report-card></app-report-card>
 
   <div class="buttons">
     <button [routerLink]="['/tabs/tab2']">

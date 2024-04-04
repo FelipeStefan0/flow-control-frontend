@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-report-card',
   templateUrl: './report-card.component.html',
   styleUrls: ['./report-card.component.scss'],
+  standalone: true
 })
 export class ReportCardComponent  implements OnInit {
 

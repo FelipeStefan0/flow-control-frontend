@@ -1,36 +1,3 @@
-.report_card {
-    background-color: var(--background-secondary);
-    margin: 1.5rem 0 2.5rem 0;
-    padding: 1rem 1.25rem;
-    border-radius: 4px;
-
-    p {
-        display: flex;
-        justify-content: space-between;
-
-        &:first-child {
-            color: var(--font-success);
-            margin-bottom: 4px;
-        }
-
-        &:nth-child(2) {
-            color: var(--font-failure);
-            margin-bottom: 4px;
-        }
-
-        &:last-child {
-            color: var(--font-primary);
-            font-size: 1.25rem;
-            margin-bottom: 4px;
-        }
-    }
-
-    hr {
-        background-color: var(--lines);
-        margin: .75rem 0;
-    }
-}
-
 .buttons {
     display: flex;
     flex-direction: column;
