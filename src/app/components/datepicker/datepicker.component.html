@@ -1,6 +1,6 @@
 <div class="datepicker" (click)="openDatepicker()">
-  <p id="year">2024</p>
-  <p id="month">Fevereiro <img src="/assets/icons/selector.svg" alt="" /></p>
+  <p id="year">{{filter.year}}</p>
+  <p id="month">{{filter.month}} <img src="/assets/icons/selector.svg" alt="" /></p>
 </div>
 
 <div
@@ -17,6 +17,7 @@
       done-text="Salvar"
       cancel-text="Cancelar"
       [min]="'2024-01-01'"
+      [max]="'2030-12-31'"
     ></ion-datetime>
   </div>
 </div>

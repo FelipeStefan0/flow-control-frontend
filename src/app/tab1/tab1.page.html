@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true">
-  <app-datepicker></app-datepicker>
+  <app-datepicker (emitFilterValue)="emitFilterValue($event)"></app-datepicker>
   <div class="report_card">
     <p>
       Entradas: + R$ 
