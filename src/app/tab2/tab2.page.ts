@@ -1,34 +1,59 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MaskitoElementPredicateAsync, MaskitoOptions } from '@maskito/core';
-import { Observable, map } from 'rxjs';
 import { ActionService } from '../services/action.service';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page {
-
   form!: FormGroup;
 
   fb = inject(FormBuilder);
   service = inject(ActionService);
 
+  hiddenCleanButton: boolean = true;
+  showCalendar: boolean = false;
+
+  amount!: number;
+  date!: string;
+
   constructor() {}
 
   ngOnInit() {
     this.initForm();
+    let initValueForm = JSON.parse(JSON.stringify(this.form.getRawValue()));
+    this.form.valueChanges.subscribe(() => {
+      if (this.form.getRawValue() != initValueForm) {
+        this.hiddenCleanButton = false;
+      }
+    });
   }
 
   initForm() {
     this.form = this.fb.group({
-      amount: ["", [Validators.required]],
-      notes: ["", [Validators.required]],
-      types: ["", [Validators.required]]
-    })
+      amount: ['', [Validators.required]],
+      hours: ['', [Validators.required]],
+      notes: ['', [Validators.required]],
+      types: ['', [Validators.required]],
+    });
+  }
+
+  openClose() {
+    this.showCalendar = !this.showCalendar;
+  }
+
+  getDate(event: any) {
+    if (event.detail.value) {
+      this.form.get('hours')?.setValue(event.detail.value);
+      this.date = event.detail.value;
+    }
+    else {
+      this.form.get('hours')?.setValue(new Date().toISOString());
+      this.date = new Date().toISOString();
+    }
+    this.openClose();
   }
 
   create() {
@@ -36,6 +61,7 @@ export class Tab2Page {
   }
 
   clear() {
-    this.initForm();
+    this.form.reset();
+    this.hiddenCleanButton = true;
   }
 }

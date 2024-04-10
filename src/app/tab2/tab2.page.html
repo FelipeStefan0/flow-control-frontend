@@ -1,24 +1,74 @@
 <ion-content [fullscreen]="true" class="ion-padding">
-  <h2>Registro de Informações</h2>
-  <div class="line"></div>
   <form [formGroup]="form">
-    <ion-input formControlName="amount" label="Valor" labelPlacement="floating" placeholder="R$ 50.00"
-      [clearInput]="true" fill="outline">
+    <ion-input
+      formControlName="amount"
+      label="Valor"
+      labelPlacement="floating"
+      placeholder="R$ 100,00"
+      [clearInput]="true"
+      fill="outline"
+    >
     </ion-input>
-    <ion-input formControlName="notes" label="Nota" labelPlacement="floating" placeholder="Serviço realizado"
-      [clearInput]="true" fill="outline">
+    <ion-input
+      [ngModelOptions]="{standalone: true}"
+      [ngModel]="date | date:'dd/MM/yyyy'"
+      label="Data"
+      labelPlacement="floating"
+      [clearInput]="true"
+      fill="outline"
+      (click)="openClose()"
+    >
     </ion-input>
-    <ion-select label="Escolha a ação" labelPlacement="floating" formControlName="types" fill="outline">
-      <ion-select-option value="0">Entrada</ion-select-option>
-      <ion-select-option value="1">Saída</ion-select-option>
-    </ion-select>
-    <div class="ion-margin-top">
-      <ion-button (click)="clear()" color="danger">
+    <ion-input
+      formControlName="notes"
+      label="Descrição"
+      labelPlacement="floating"
+      placeholder=""
+      [clearInput]="true"
+      fill="outline"
+    >
+    </ion-input>
+    <div class="radios">
+      <div>
+        <input
+          type="radio"
+          id="in"
+          name="types"
+          value="0"
+          formControlName="types"
+        />
+        <label for="in">Entrada</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="out"
+          name="types"
+          value="1"
+          formControlName="types"
+        />
+        <label for="out">Saída</label>
+      </div>
+    </div>
+    <div class="buttons ion-margin-top">
+      <button (click)="create()" [disabled]="form.invalid">Registrar</button>
+      <button (click)="clear()" color="danger" *ngIf="!hiddenCleanButton">
         Limpar
-      </ion-button>
-      <ion-button (click)="create()" [disabled]="form.invalid">
-        Registrar
-      </ion-button>
+      </button>
     </div>
   </form>
 </ion-content>
+
+<ng-container *ngIf="showCalendar">
+  <div class="datepicker">
+    <ion-datetime
+      presentation="date"
+      locale="pt-br"
+      done-text="Confirmar"
+      cancel-text="Cancelar"
+      (ionCancel)="openClose()"
+      (ionChange)="getDate($event)"
+      [showDefaultButtons]="true"
+    ></ion-datetime>
+  </div>
+</ng-container>

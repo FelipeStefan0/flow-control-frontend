@@ -1,25 +1,99 @@
-h2 {
-    color: var(--principal-dark-blue);
-}
-
-.line {
-    background-color: #e7e7e7;
-    height: 1px;
-    width: 100%;
-    margin-bottom: 2rem;
+ion-content {
+    --padding-top: 2.5rem;
+    --padding-end: 1.5rem;
+    --padding-start: 1.5rem;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
 
-    div {
+    .radios {
+        display: flex;
+        gap: 3rem;
+
+        div {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+
+            input[type="radio"] {
+                appearance: none;
+                background-color: var(--background-principal);
+                width: 1rem;
+                height: 1rem;
+                border: 1px solid var(--lines);
+                border-radius: 50%;
+                display: grid;
+                place-content: center;
+            }
+
+            input[type="radio"]:checked {
+                border-color: var(--button-primary);
+            }
+
+            input[type="radio"]::before {
+                content: "";
+                width: .625rem;
+                height: .625rem;
+                border-radius: 50%;
+                transform: scale(0);
+                transition: 120ms transform ease-in-out;
+                box-shadow: inset 1em 1em var(--button-primary);          
+            }
+
+            input[type="radio"]:checked::before {
+                transform: scale(1);
+            }
+
+            label {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .buttons {
         display: flex;
         justify-content: space-between;
 
-        ion-button {
-            width: 50%;
+        button {
+            width: 47%;
+            
+            &:first-child {
+                background-color: var(--button-primary);
+                color: var(--font-tertiary)
+            }
+
+            &:first-child:disabled {
+                background-color: var(--button-tertiary);
+                color: var(--lines)
+            }
+
+            &:last-child {
+                background-color: var(--button-secondary);
+            }
         }
+    }
+
+    ion-input {
+        --font-family: Arial, Helvetica, sans-serif;
+    }
+}
+
+.datepicker {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #00000017;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(1px);
+    padding-top: 100px;
+    z-index: 999;
+
+    ion-datetime{
+        background: var(--background-principal);
+        position: absolute;
     }
 }
