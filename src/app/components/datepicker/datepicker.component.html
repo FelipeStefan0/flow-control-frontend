@@ -1,4 +1,4 @@
-<div class="datepicker" (click)="openDatepicker()">
+<div class="datepicker" (click)="openCloseDatepicker()">
   <p id="year">{{filter.year}}</p>
   <p id="month">{{filter.month}} <img src="/assets/icons/selector.svg" alt="" /></p>
 </div>
@@ -11,10 +11,10 @@
     <ion-datetime
       presentation="month-year"
       locale="pt-br"
-      (ionCancel)="openDatepicker()"
+      (ionCancel)="openCloseDatepicker()"
       (ionChange)="getDataFromMonthAndYear($event)"
       [showDefaultButtons]="true"
-      done-text="Salvar"
+      done-text="Confirmar"
       cancel-text="Cancelar"
       [min]="'2024-01-01'"
       [max]="'2030-12-31'"

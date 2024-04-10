@@ -42,7 +42,7 @@ export class DatepickerComponent {
     return "";
   }
 
-  openDatepicker() {
+  openCloseDatepicker() {
     this.openedDatepicker = !this.openedDatepicker;
   }
 
@@ -55,6 +55,6 @@ export class DatepickerComponent {
       this.filter.year = this.currentYear;
     }
     this.emitFilterValue.emit(this.filter)
-    this.openDatepicker();
+    this.openCloseDatepicker();
   }
 }
