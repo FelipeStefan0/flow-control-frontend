@@ -1,0 +1,11 @@
+<div class="card" [ngClass]="type == 'IN' ? 'in_card' : 'out_card'">
+  <span class="hour">{{hours}}</span>
+  <div class="information">
+    <span>Valor: R$ {{amount}}</span>
+    <span>Descrição: {{description}}</span>
+  </div>
+  <div class="buttons">
+    <button (click)="editAction()">Editar</button>
+    <button (click)="deleteAction()">Deletar</button>
+  </div>
+</div>

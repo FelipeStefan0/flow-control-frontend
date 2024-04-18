@@ -1,0 +1,50 @@
+.card {
+  background-color: var(--background-secondary);
+  padding: 1.875rem 1.0625rem 1.0625rem 1.0625rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-direction: column;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.in_card {
+    border-top: 5px solid #4e894dc4;
+}
+
+.out_card {
+    border-top: 5px solid #8c2c2cc4;
+}
+
+.hour {
+  font-size: 12px;
+  color: var(--font-secondary);
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    width: 47%;
+
+    &:first-child {
+      background-color: var(--button-primary);
+      color: var(--font-tertiary);
+    }
+
+    &:first-child:disabled {
+      background-color: var(--button-tertiary);
+      color: var(--lines);
+    }
+
+    &:last-child {
+      background-color: var(--button-secondary);
+    }
+  }
+}
