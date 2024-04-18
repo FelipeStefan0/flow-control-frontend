@@ -6,21 +6,23 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './actions-card.component.html',
   styleUrls: ['./actions-card.component.scss'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
-export class ActionsCardComponent  implements OnInit {
-
-  @Input() hours!: Date;
+export class ActionsCardComponent implements OnInit {
+  @Input() hours!: number[];
   @Input() amount!: number;
   @Input() notes!: string;
   @Input() type!: string;
 
   @Output() emitEditAction: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() emitDeleteAction: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() emitDeleteAction: EventEmitter<boolean> =
+    new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(console.log());
+  }
 
   editAction() {
     this.emitEditAction.emit(true);

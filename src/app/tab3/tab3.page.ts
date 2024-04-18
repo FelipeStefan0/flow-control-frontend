@@ -1,16 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ActionService } from '../services/action.service';
+import { Action } from '../models/Action';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page {
-
   actions$!: Observable<any>;
-
   service = inject(ActionService);
 
   constructor() {
@@ -18,6 +17,10 @@ export class Tab3Page {
   }
 
   list() {
-    this.actions$ = this.service.listAll().pipe(map((res:any) => {return res.data}));
+    this.actions$ = this.service.listAll().pipe(
+      map((res: any) => {
+        return res.data;
+      })
+    );
   }
 }

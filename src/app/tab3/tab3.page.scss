@@ -1,13 +1,5 @@
-.list {
-
-    display: grid;
-    grid-template-columns: .3fr repeat(2, 1fr);
-
-    .in {
-        color: green;
-    }
-
-    .out {
-        color: red;
-    }
+ion-content {
+  --padding-top: 2.5rem;
+  --padding-end: 1.5rem;
+  --padding-start: 1.5rem;
 }

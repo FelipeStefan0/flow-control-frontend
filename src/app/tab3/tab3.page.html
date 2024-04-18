@@ -1,11 +1,12 @@
 <ion-content [fullscreen]="true" class="ion-padding">
-  <div *ngIf="actions$ | async as actions">
-    <div class="list" *ngFor="let action of actions">
-      <p>{{action.amount}}</p>
-      <p>{{action.notes}}</p>
-      <p [ngClass]="action.types == 'IN' ? 'in' : 'out'">
-        {{action.types == 'IN' ? '+ Entrada' : '- Saída'}}
-      </p>
-    </div>
-  </div>
+  <ng-container *ngIf="actions$ | async as actions">
+    <ng-container *ngFor="let action of actions">
+      <app-actions-card
+        [hours]="action.hours"
+        [amount]="action.amount"
+        [notes]="action.notes"
+        [type]="action.types"
+      ></app-actions-card>
+    </ng-container>
+  </ng-container>
 </ion-content>
