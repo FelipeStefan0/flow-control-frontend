@@ -12,7 +12,7 @@ export class ActionsCardComponent  implements OnInit {
 
   @Input() hours!: Date;
   @Input() amount!: number;
-  @Input() description!: string;
+  @Input() notes!: string;
   @Input() type!: string;
 
   @Output() emitEditAction: EventEmitter<boolean> = new EventEmitter<boolean>();
