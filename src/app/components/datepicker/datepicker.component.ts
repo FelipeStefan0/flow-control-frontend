@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Month } from 'src/app/models/Month';
 
@@ -14,13 +14,19 @@ import { Month } from 'src/app/models/Month';
   ]
 })
 export class DatepickerComponent {
+  @Input() type: string = "";
   @Output() emitFilterValue: EventEmitter<any> = new EventEmitter<any>();
+
   openedDatepicker: boolean = false;
 
-  currentMonth: string = "";
-  currentYear!: number;
+  currentDate = {
+    day: 0,
+    month: "",
+    year: 0
+  }
   
   filter = {
+    day: 0,
     month: "",
     year: 0
   }
@@ -28,10 +34,16 @@ export class DatepickerComponent {
   constructor() { }
 
   ngOnInit() {
-    this.currentYear = new Date().getFullYear();
-    this.currentMonth = this.getMonthToString(new Date().getMonth());
-    this.filter.year = this.currentYear;
-    this.filter.month = this.currentMonth;
+    this.currentDate = {
+      day: new Date().getDate(),
+      month: this.getMonthToString(new Date().getMonth()),
+      year: new Date().getFullYear()
+    }
+    this.setCurrentDate();
+  }
+
+  setCurrentDate() {
+    this.filter = JSON.parse(JSON.stringify(this.currentDate))
   }
 
   getMonthToString(monthNumber: number): string {
@@ -46,14 +58,14 @@ export class DatepickerComponent {
     this.openedDatepicker = !this.openedDatepicker;
   }
 
-  getDataFromMonthAndYear(event: any) {
+  getData(event: any) {
     if(event.detail.value) {
-      this.filter.month = this.getMonthToString((+(event.detail.value as string).substring(5, 7))-1);
-      this.filter.year = +(event.detail.value as string).substring(0,4)
-    } else {
-      this.filter.month = this.currentMonth;
-      this.filter.year = this.currentYear;
-    }
+      this.filter = {
+        day: +(event.detail.value as string).substring(8,10),
+        month: this.getMonthToString((+(event.detail.value as string).substring(5, 7))-1),
+        year: +(event.detail.value as string).substring(0,4)
+      }
+    } else this.setCurrentDate();
     this.emitFilterValue.emit(this.filter)
     this.openCloseDatepicker();
   }

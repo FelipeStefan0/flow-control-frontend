@@ -11,7 +11,7 @@
         font-size: .875rem;
     }
 
-    #month {
+    #month, #day, span {
         color: var(--font-primary);
         font-size: 1.5rem;
         display: flex;
@@ -20,6 +20,11 @@
         img {
             margin-left: .5rem;
         }
+    }
+
+    > div {
+        display: flex;
+        gap: .25rem;
     }
 }
 

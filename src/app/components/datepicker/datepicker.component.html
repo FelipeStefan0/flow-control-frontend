@@ -1,6 +1,11 @@
 <div class="datepicker" (click)="openCloseDatepicker()">
   <p id="year">{{filter.year}}</p>
-  <p id="month">{{filter.month}} <img src="/assets/icons/selector.svg" alt="" /></p>
+  <div>
+    <p id="day" *ngIf="type != 'month-year'">{{filter.day}}</p>
+    <span *ngIf="type != 'month-year'">de</span>
+    <p id="month">{{filter.month}}</p>
+    <img src="/assets/icons/selector.svg" alt="" />
+  </div>
 </div>
 
 <div
@@ -9,10 +14,10 @@
 >
   <div>
     <ion-datetime
-      presentation="month-year"
+      [presentation]="type"
       locale="pt-br"
       (ionCancel)="openCloseDatepicker()"
-      (ionChange)="getDataFromMonthAndYear($event)"
+      (ionChange)="getData($event)"
       [showDefaultButtons]="true"
       done-text="Confirmar"
       cancel-text="Cancelar"
