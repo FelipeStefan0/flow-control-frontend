@@ -20,9 +20,7 @@ export class ActionsCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    console.log(console.log());
-  }
+  ngOnInit() {}
 
   editAction() {
     this.emitEditAction.emit(true);
