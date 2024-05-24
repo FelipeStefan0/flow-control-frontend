@@ -1,3 +1,9 @@
+:host ::ng-deep .tab-selected {
+    img {
+        filter: brightness(0) saturate(100%) invert(39%) sepia(74%) saturate(976%) hue-rotate(192deg) brightness(101%) contrast(103%);
+    }
+}
+
 ion-tab-bar {
     --background: rgb(241, 241, 241);
 }
