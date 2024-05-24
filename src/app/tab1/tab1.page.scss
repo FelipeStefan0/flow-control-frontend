@@ -13,4 +13,8 @@
             filter: var(--filter-to-white);
         }
     }
+
+    button:active {
+        background-color: var(--button-primary-active);
+    }
 }
