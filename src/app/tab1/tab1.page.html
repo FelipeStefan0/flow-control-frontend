@@ -1,15 +1,18 @@
 <ion-content [fullscreen]="true">
-  <app-datepicker (emitFilterValue)="emitFilterValue($event)"></app-datepicker>
+  <app-datepicker
+    type="month-year"
+    (emitFilterValue)="emitFilterValue($event)"
+  ></app-datepicker>
   <app-report-card [report]="report"></app-report-card>
 
   <div class="buttons">
     <button [routerLink]="['/tabs/tab2']">
       Registrar
-      <img src="/assets/icons/edit.svg" alt="">
+      <img src="/assets/icons/edit.svg" alt="" />
     </button>
     <button [routerLink]="['/tabs/tab3']">
       Listagem
-      <img src="/assets/icons/list.svg" alt="">
+      <img src="/assets/icons/list.svg" alt="" />
     </button>
   </div>
 </ion-content>

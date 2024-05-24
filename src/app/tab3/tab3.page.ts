@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ActionService } from '../services/action.service';
-import { Action } from '../models/Action';
 
 @Component({
   selector: 'app-tab3',
@@ -11,6 +10,8 @@ import { Action } from '../models/Action';
 export class Tab3Page {
   actions$!: Observable<any>;
   service = inject(ActionService);
+  showCalendar: boolean = false;
+  date!: string;
 
   constructor() {
     this.list();
@@ -22,5 +23,15 @@ export class Tab3Page {
         return res.data;
       })
     );
+  }
+
+  openClose() {
+    this.showCalendar = !this.showCalendar;
+  }
+
+  emitFilterValue(event: {date: number, month: number, year: number}) {
+    this.actions$ = this.service.getByDate(event).pipe(map((res: any) => {
+      return res.data;
+    }))
   }
 }

@@ -6,6 +6,7 @@ import { Tab3Page } from './tab3.page';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 import { ActionsCardComponent } from '../components/actions-card/actions-card.component';
+import { DatepickerComponent } from '../components/datepicker/datepicker.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { ActionsCardComponent } from '../components/actions-card/actions-card.co
     CommonModule,
     FormsModule,
     Tab3PageRoutingModule,
-    ActionsCardComponent
+    ActionsCardComponent,
+    DatepickerComponent
   ],
   declarations: [Tab3Page]
 })

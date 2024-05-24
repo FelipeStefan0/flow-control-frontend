@@ -1,4 +1,7 @@
 <ion-content [fullscreen]="true" class="ion-padding">
+  <div class="datepicker-container">
+    <app-datepicker type="" (emitFilterValue)="emitFilterValue($event)"></app-datepicker>
+  </div>
   <ng-container *ngIf="actions$ | async as actions">
     <ng-container *ngFor="let action of actions">
       <app-actions-card
