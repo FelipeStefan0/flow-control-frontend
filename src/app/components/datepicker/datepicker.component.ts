@@ -19,15 +19,23 @@ export class DatepickerComponent {
 
   openedDatepicker: boolean = false;
 
-  currentDate = {
+  currentDate: {
+    day: number,
+    month: string | number,
+    year: number
+  } = {
     day: 0,
-    month: "",
+    month: 0,
     year: 0
   }
   
-  filter = {
+  filter: {
+    day: number,
+    month: string | number,
+    year: number
+  } = {
     day: 0,
-    month: "",
+    month: 0,
     year: 0
   }
 
@@ -46,10 +54,11 @@ export class DatepickerComponent {
     this.filter = JSON.parse(JSON.stringify(this.currentDate))
   }
 
-  getMonthToString(monthNumber: number): string {
+  getMonthToString(month: number | string): string {
+    if(typeof month == "string") return "";
     let value = Object.values(Month).length;
     for (let i = 0; i < value; i++)
-      if (Object.values(Month).indexOf(Object.values(Month)[i]) == monthNumber)
+      if (Object.values(Month).indexOf(Object.values(Month)[i]) == month)
         return Object.values(Month)[i].toString();
     return "";
   }
@@ -59,13 +68,23 @@ export class DatepickerComponent {
   }
 
   getData(event: any) {
-    if(event.detail.value) {
-      this.filter = {
-        day: +(event.detail.value as string).substring(8,10),
-        month: this.getMonthToString((+(event.detail.value as string).substring(5, 7))-1),
-        year: +(event.detail.value as string).substring(0,4)
-      }
-    } else this.setCurrentDate();
+    if(this.type == "month-year") {
+      if(event.detail.value) {
+        this.filter = {
+          day: +(event.detail.value as string).substring(8,10),
+          month: this.getMonthToString((+(event.detail.value as string).substring(5, 7))-1),
+          year: +(event.detail.value as string).substring(0,4)
+        }
+      } else this.setCurrentDate();
+    } else {
+      if(event.detail.value) {
+        this.filter = {
+          day: +(event.detail.value as string).substring(8,10),
+          month: (+(event.detail.value as string).substring(5, 7))-1,
+          year: +(event.detail.value as string).substring(0,4)
+        }
+      } else this.setCurrentDate();
+    }
     this.emitFilterValue.emit(this.filter)
     this.openCloseDatepicker();
   }

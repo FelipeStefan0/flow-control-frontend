@@ -3,7 +3,7 @@
   <div>
     <p id="day" *ngIf="type != 'month-year'">{{filter.day}}</p>
     <span *ngIf="type != 'month-year'">de</span>
-    <p id="month">{{filter.month}}</p>
+    <p id="month">{{getMonthToString(filter.month) == "" ? filter.month : getMonthToString(filter.month)}}</p>
     <img src="/assets/icons/selector.svg" alt="" />
   </div>
 </div>
