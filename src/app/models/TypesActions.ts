@@ -1,4 +1,4 @@
 export enum TypesActions {
-    IN = ("in"),
-    OUT = ("out")
+    IN = "in",
+    OUT = "out"
 }
