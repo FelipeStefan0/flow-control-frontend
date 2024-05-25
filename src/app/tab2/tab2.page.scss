@@ -70,8 +70,16 @@ form {
                 color: var(--lines)
             }
 
+            &:first-child:active {
+                background-color: var(--button-primary-active);
+            }
+
             &:last-child {
                 background-color: var(--button-secondary);
+            }
+
+            &:last-child:active {
+                background-color: var(--button-secondary-active);
             }
         }
     }
