@@ -9,6 +9,41 @@ form {
     flex-direction: column;
     gap: 2rem;
 
+    .input {
+        height: 56px;
+        padding: 0 1rem;
+        display: flex;
+        border: 1px solid var(--lines);
+        border-radius: 4px;
+
+        label {
+            display: flex;
+            align-items: center;
+        }
+
+        input {
+            outline: none;
+            border: none;
+            width: 100%;
+        }
+
+        button {
+
+        }
+
+        &:hover {
+            border: 1px solid var(--black);
+        }
+    }
+
+    .input, .input > input, .input > button {
+        background-color: var(--background-primary);
+    }
+
+    ion-input, .input {
+        --font-family: Arial, Helvetica, sans-serif;
+    }
+
     .radios {
         display: flex;
         gap: 3rem;
@@ -20,7 +55,7 @@ form {
 
             input[type="radio"] {
                 appearance: none;
-                background-color: var(--background-principal);
+                background-color: var(--background-primary);
                 width: 1rem;
                 height: 1rem;
                 border: 1px solid var(--lines);
@@ -91,10 +126,6 @@ form {
             }
         }
     }
-
-    ion-input {
-        --font-family: Arial, Helvetica, sans-serif;
-    }
 }
 
 .datepicker {
@@ -109,7 +140,7 @@ form {
     z-index: 999;
 
     ion-datetime{
-        background: var(--background-principal);
+        background: var(--background-primary);
         position: absolute;
     }
 }

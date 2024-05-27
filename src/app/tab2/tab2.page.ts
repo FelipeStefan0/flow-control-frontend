@@ -19,6 +19,8 @@ export class Tab2Page {
   amount!: number;
   date!: string;
 
+  active: boolean = false;
+
   constructor() {}
 
   ngOnInit() {
@@ -63,5 +65,9 @@ export class Tab2Page {
   clear() {
     this.form.reset();
     this.hiddenCleanButton = true;
+  }
+
+  inputSelected() {
+    this.active = true;
   }
 }
