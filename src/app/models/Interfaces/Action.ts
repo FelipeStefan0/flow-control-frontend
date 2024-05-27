@@ -1,4 +1,4 @@
-import { TypesActions } from "./TypesActions";
+import { TypesActions } from "../Enum/TypesActions";
 
 export interface Action {
     id: number;

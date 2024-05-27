@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { Month } from 'src/app/models/Month';
+import { Month } from 'src/app/models/Enum/Month';
 
 @Component({
   selector: 'app-datepicker',

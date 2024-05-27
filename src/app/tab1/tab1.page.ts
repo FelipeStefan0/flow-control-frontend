@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ReportService } from '../services/report.service';
-import { Month, MonthUtils } from '../models/Month';
-import { Report } from '../models/Report';
+import { Month, MonthUtils } from '../models/Enum/Month';
+import { Report } from '../models/Interfaces/Report';
 import { DatepickerComponent } from '../components/datepicker/datepicker.component';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Report } from 'src/app/models/Report';
+import { Report } from 'src/app/models/Interfaces/Report';
 
 @Component({
   selector: 'app-report-card',
