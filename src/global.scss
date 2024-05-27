@@ -35,7 +35,9 @@
 }
 
 :root {
-    --background-principal: #e8e8e8;
+
+    // Colors
+    --background-primary: #e8e8e8;
     --background-secondary: #e0e0e0;
 
     --button-primary: #4890c5;
@@ -57,14 +59,18 @@
     --font-success: #4e894d;
     --font-failure: #8c2c2c;
 
+    --black: #000000;
+
+    // Font
     --font-family: "Poppins";
 
+    // Filters
     --filter-to-white: invert(93%) sepia(39%) saturate(1%) hue-rotate(171deg) brightness(107%) contrast(101%);
     --filter-to-blue: brightness(0) saturate(100%) invert(39%) sepia(74%) saturate(976%) hue-rotate(192deg) brightness(101%) contrast(103%);
 }
 
 ion-content {
-    --background: var(--background-principal);
+    --background: var(--background-primary);
     --padding-top: 1.5rem;
     --padding-bottom: 1.5rem;
     --padding-start: 1.5rem;
