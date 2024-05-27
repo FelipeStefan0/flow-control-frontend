@@ -40,9 +40,11 @@
 
     --button-primary: #4890c5;
     --button-primary-active: #4589b9;
+    --button-primary-hover: rgb(75, 151, 206);
 
     --button-secondary: #da5c5c;
     --button-secondary-active: #c95555;
+    --button-secondary-hover: #e96363;
 
     --button-tertiary: #d3d3d3;
 
@@ -58,6 +60,7 @@
     --font-family: "Poppins";
 
     --filter-to-white: invert(93%) sepia(39%) saturate(1%) hue-rotate(171deg) brightness(107%) contrast(101%);
+    --filter-to-blue: brightness(0) saturate(100%) invert(39%) sepia(74%) saturate(976%) hue-rotate(192deg) brightness(101%) contrast(103%);
 }
 
 ion-content {

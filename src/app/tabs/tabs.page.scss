@@ -1,6 +1,6 @@
-:host ::ng-deep .tab-selected {
+:host ::ng-deep .tab-selected, ion-tab-button:hover {
     img {
-        filter: brightness(0) saturate(100%) invert(39%) sepia(74%) saturate(976%) hue-rotate(192deg) brightness(101%) contrast(103%);
+        filter: var(--filter-to-blue)
     }
 }
 

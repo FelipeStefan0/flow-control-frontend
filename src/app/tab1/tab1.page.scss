@@ -6,15 +6,19 @@
     button {
         background-color: var(--button-primary);
 
+        &:hover {
+            background-color: var(--button-primary-hover);
+        }
+
+        &:active {
+            background-color: var(--button-primary-active);
+        }
+
         img {
             width: 1.25rem;
             height: 1.25rem;
             margin-left: 4px;
             filter: var(--filter-to-white);
         }
-    }
-
-    button:active {
-        background-color: var(--button-primary-active);
     }
 }
