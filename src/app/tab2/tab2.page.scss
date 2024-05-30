@@ -1,146 +1,115 @@
 ion-content {
-    --padding-top: 2.5rem;
-    --padding-end: 1.5rem;
-    --padding-start: 1.5rem;
+  --padding-top: 2.5rem;
+  --padding-end: 1.5rem;
+  --padding-start: 1.5rem;
 }
 
 form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  ion-input {
+    --font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .radios {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
 
-    .input {
-        height: 56px;
-        padding: 0 1rem;
-        display: flex;
-        border: 1px solid var(--lines);
-        border-radius: 4px;
+    div {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
 
-        label {
-            display: flex;
-            align-items: center;
-        }
-
-        input {
-            outline: none;
-            border: none;
-            width: 100%;
-        }
-
-        button {
-
-        }
-
-        &:hover {
-            border: 1px solid var(--black);
-        }
-    }
-
-    .input, .input > input, .input > button {
+      input[type="radio"] {
+        appearance: none;
         background-color: var(--background-primary);
+        width: 1rem;
+        height: 1rem;
+        border: 1px solid var(--lines);
+        border-radius: 50%;
+        display: grid;
+        place-content: center;
+      }
+
+      input[type="radio"]:checked {
+        border-color: var(--button-primary);
+      }
+
+      input[type="radio"]::before {
+        content: "";
+        width: 0.625rem;
+        height: 0.625rem;
+        border-radius: 50%;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em var(--button-primary);
+      }
+
+      input[type="radio"]:checked::before {
+        transform: scale(1);
+      }
+
+      label {
+        font-size: 14px;
+      }
     }
+  }
 
-    ion-input, .input {
-        --font-family: Arial, Helvetica, sans-serif;
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      width: 47%;
+
+      &:nth-child(1) {
+        background-color: var(--button-primary);
+        color: var(--font-tertiary);
+      }
+
+      &:nth-child(1):hover {
+        background-color: var(--button-primary-hover);
+      }
+
+      &:nth-child(1):active {
+        background-color: var(--button-primary-active);
+      }
+
+      &:nth-child(1):disabled {
+        background-color: var(--button-tertiary);
+        color: var(--lines);
+      }
+
+      &:nth-child(2) {
+        background-color: var(--button-secondary);
+      }
+
+      &:nth-child(2):hover {
+        background-color: var(--button-secondary-hover);
+      }
+
+      &:nth-child(2):active {
+        background-color: var(--button-secondary-active);
+      }
     }
-
-    .radios {
-        display: flex;
-        gap: 3rem;
-
-        div {
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-
-            input[type="radio"] {
-                appearance: none;
-                background-color: var(--background-primary);
-                width: 1rem;
-                height: 1rem;
-                border: 1px solid var(--lines);
-                border-radius: 50%;
-                display: grid;
-                place-content: center;
-            }
-
-            input[type="radio"]:checked {
-                border-color: var(--button-primary);
-            }
-
-            input[type="radio"]::before {
-                content: "";
-                width: .625rem;
-                height: .625rem;
-                border-radius: 50%;
-                transform: scale(0);
-                transition: 120ms transform ease-in-out;
-                box-shadow: inset 1em 1em var(--button-primary);          
-            }
-
-            input[type="radio"]:checked::before {
-                transform: scale(1);
-            }
-
-            label {
-                font-size: 14px;
-            }
-        }
-    }
-
-    .buttons {
-        display: flex;
-        justify-content: space-between;
-
-        button {
-            width: 47%;
-            
-            &:nth-child(1) {
-                background-color: var(--button-primary);
-                color: var(--font-tertiary)
-            }
-
-            &:nth-child(1):hover {
-                background-color: var(--button-primary-hover);
-            }
-
-            &:nth-child(1):active {
-                background-color: var(--button-primary-active);
-            }
-
-            &:nth-child(1):disabled {
-                background-color: var(--button-tertiary);
-                color: var(--lines)
-            }
-
-            &:nth-child(2) {
-                background-color: var(--button-secondary);
-            }
-
-            &:nth-child(2):hover {
-                background-color: var(--button-secondary-hover);
-            }
-
-            &:nth-child(2):active {
-                background-color: var(--button-secondary-active);
-            }
-        }
-    }
+  }
 }
 
 .datepicker {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #00000017;
-    display: flex;
-    justify-content: center;
-    backdrop-filter: blur(1px);
-    padding-top: 100px;
-    z-index: 999;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #00000017;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(1px);
+  padding-top: 100px;
+  z-index: 999;
 
-    ion-datetime{
-        background: var(--background-primary);
-        position: absolute;
-    }
+  ion-datetime {
+    background: var(--background-primary);
+    position: absolute;
+  }
 }

@@ -1,14 +1,14 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <form [formGroup]="form">
-    <div class="input" (click)="inputSelected()">
-      <label>Valor</label>
-      <input
-        formControlName="amount"
-        currencyMask
-        *ngIf="false"
-      />
-      <button *ngIf="false">X</button>
-    </div>
+    <ion-input
+      formControlName="amount"
+      label="Valor"
+      labelPlacement="floating"
+      placeholder=""
+      [clearInput]="true"
+      fill="outline"
+    >
+    </ion-input>
     <ion-input
       [ngModelOptions]="{standalone: true}"
       [ngModel]="date | date:'dd/MM/yyyy'"
