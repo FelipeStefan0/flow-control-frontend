@@ -20,21 +20,21 @@ export class DatepickerComponent {
   openedDatepicker: boolean = false;
 
   currentDate: {
-    day: number,
+    date: number,
     month: string | number,
     year: number
   } = {
-    day: 0,
+    date: 0,
     month: 0,
     year: 0
   }
   
   filter: {
-    day: number,
+    date: number,
     month: string | number,
     year: number
   } = {
-    day: 0,
+    date: 0,
     month: 0,
     year: 0
   }
@@ -43,7 +43,7 @@ export class DatepickerComponent {
 
   ngOnInit() {
     this.currentDate = {
-      day: new Date().getDate(),
+      date: new Date().getDate(),
       month: this.getMonthToString(new Date().getMonth()),
       year: new Date().getFullYear()
     }
@@ -71,7 +71,7 @@ export class DatepickerComponent {
     if(this.type == "month-year") {
       if(event.detail.value) {
         this.filter = {
-          day: +(event.detail.value as string).substring(8,10),
+          date: +(event.detail.value as string).substring(8,10),
           month: this.getMonthToString((+(event.detail.value as string).substring(5, 7))-1),
           year: +(event.detail.value as string).substring(0,4)
         }
@@ -79,7 +79,7 @@ export class DatepickerComponent {
     } else {
       if(event.detail.value) {
         this.filter = {
-          day: +(event.detail.value as string).substring(8,10),
+          date: +(event.detail.value as string).substring(8,10),
           month: (+(event.detail.value as string).substring(5, 7))-1,
           year: +(event.detail.value as string).substring(0,4)
         }

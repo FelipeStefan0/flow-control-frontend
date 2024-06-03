@@ -30,6 +30,10 @@ export class Tab3Page {
   }
 
   emitFilterValue(event: {date: number, month: number, year: number}) {
+    // let date: Date = new Date();
+    // date.setFullYear(event.year, event.month, event.date);
+    // date.setHours(0, 0, 0, 0)
+    // console.log(date.get);
     this.actions$ = this.service.getByDate(event).pipe(map((res: any) => {
       return res.data;
     }))
