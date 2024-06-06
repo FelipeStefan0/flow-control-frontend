@@ -17,8 +17,8 @@ export class ActionService {
 
   constructor() { }
 
-  public listAll(): Observable<any> {
-    return this.http.get<any>(`${environment.server}${this.endpoints.root()}`);
+  public listAll(params?: {date: any}): Observable<any> {
+    return this.http.get<any>(`${environment.server}${this.endpoints.root()}`, {params: params});
   }
 
   public create(params: Action): Observable<any> {
@@ -31,9 +31,5 @@ export class ActionService {
 
   public edit(params: Action): Observable<any> {
     return this.http.put(`${environment.server}${this.endpoints.root()}`, params)
-  }
-
-  public getByDate(params: {date: number, month: number, year: number}): Observable<any> {
-    return this.http.get<any>(`${environment.server}${this.endpoints.root()}/getByDate`, {params: params})
   }
 }

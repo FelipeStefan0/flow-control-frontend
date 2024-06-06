@@ -9,9 +9,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   imports: [CommonModule],
 })
 export class ActionsCardComponent implements OnInit {
-  @Input() hours!: number[];
-  @Input() amount!: number;
-  @Input() notes!: string;
+  @Input() date!: number[];
+  @Input() value!: number;
+  @Input() description!: string;
   @Input() type!: string;
 
   @Output() emitEditAction: EventEmitter<boolean> = new EventEmitter<boolean>();

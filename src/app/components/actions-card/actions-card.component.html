@@ -1,8 +1,8 @@
 <div class="card" [ngClass]="type == 'IN' ? 'in_card' : 'out_card'">
-  <span class="hour">{{ hours[3] + ":" + hours[4] }}</span>
+  <span class="hour">{{ date[3] + ":" + [date[4] < 10 ? "0" + date[4] : date[4]] }}</span>
   <div class="information">
-    <span>Valor: R$ {{ amount.toFixed(2) }}</span>
-    <span>Descrição: {{ notes }}</span>
+    <span>Valor: R$ {{ value.toFixed(2) }}</span>
+    <span>Descrição: {{ description }}</span>
   </div>
   <div class="buttons">
     <button (click)="editAction()">Editar</button>

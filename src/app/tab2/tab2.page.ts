@@ -19,6 +19,17 @@ export class Tab2Page {
 
   date!: string;
 
+  actionTypes : {title: string, value: number}[] = [
+    {
+      title: "Receita",
+      value: 0
+    },
+    {
+      title: "Despesa",
+      value: 1
+    }
+  ]
+
   constructor() {}
 
   ngOnInit() {
@@ -39,10 +50,10 @@ export class Tab2Page {
 
   initForm() {
     this.form = this.fb.group({
-      amount: ['', [Validators.required]],
-      hours: ['', [Validators.required]],
-      notes: ['', [Validators.required]],
-      types: ['', [Validators.required]],
+      value: ['', [Validators.required]],
+      date: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      type: ['', [Validators.required]],
     });
 
     let initValueForm = JSON.parse(JSON.stringify(this.form.getRawValue()));
@@ -58,11 +69,12 @@ export class Tab2Page {
   }
 
   getDate(event: any) {
+    let tzoffset = (new Date()).getTimezoneOffset() * 60000;
     if (event.detail.value) {
-      this.form.get('hours')?.setValue(event.detail.value);
+      this.form.get('date')?.setValue(event.detail.value);
       this.date = event.detail.value;
     } else {
-      this.form.get('hours')?.setValue(new Date().toISOString());
+      this.form.get('date')?.setValue(new Date(Date.now() - tzoffset).toISOString().slice(0, -1));
       this.date = new Date().toISOString();
     }
     this.openClose();

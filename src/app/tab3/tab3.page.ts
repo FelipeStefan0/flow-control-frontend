@@ -13,12 +13,23 @@ export class Tab3Page {
   showCalendar: boolean = false;
   date!: string;
 
-  constructor() {
-    this.list();
+  constructor() {}
+
+  ngOnInit() {
+    let date = new Date()
+    let event = {date: date.getDate(), month: date.getMonth(), year: date.getFullYear()}
+    this.list(event);
   }
 
-  list() {
-    this.actions$ = this.service.listAll().pipe(
+  list(event?: {date: number, month: number, year: number}) {
+    let date: Date = new Date();
+    
+    if(event) {
+      date.setFullYear(event!.year, event!.month, event!.date);
+      date.setHours(0-3, 0, 0, 0)
+    }
+    
+    this.actions$ = this.service.listAll({date: date.toISOString().slice(0, -1)}).pipe(
       map((res: any) => {
         return res.data;
       })
@@ -27,15 +38,5 @@ export class Tab3Page {
 
   openClose() {
     this.showCalendar = !this.showCalendar;
-  }
-
-  emitFilterValue(event: {date: number, month: number, year: number}) {
-    // let date: Date = new Date();
-    // date.setFullYear(event.year, event.month, event.date);
-    // date.setHours(0, 0, 0, 0)
-    // console.log(date.get);
-    this.actions$ = this.service.getByDate(event).pipe(map((res: any) => {
-      return res.data;
-    }))
   }
 }

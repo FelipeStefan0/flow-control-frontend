@@ -1,12 +1,13 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <form [formGroup]="form">
     <ion-input
-      formControlName="amount"
+      formControlName="value"
       label="Valor"
       labelPlacement="floating"
       placeholder=""
       [clearInput]="true"
       fill="outline"
+      type="number"
     >
     </ion-input>
     <ion-input
@@ -20,7 +21,7 @@
     >
     </ion-input>
     <ion-input
-      formControlName="notes"
+      formControlName="description"
       label="Descrição"
       labelPlacement="floating"
       placeholder=""
@@ -29,25 +30,15 @@
     >
     </ion-input>
     <div class="radios">
-      <div>
+      <div *ngFor="let type of actionTypes">
         <input
           type="radio"
-          id="in"
-          name="types"
-          value="0"
-          formControlName="types"
+          [id]="type.value"
+          name="type"
+          [value]="type.value"
+          formControlName="type"
         />
-        <label for="in">Entrada</label>
-      </div>
-      <div>
-        <input
-          type="radio"
-          id="out"
-          name="types"
-          value="1"
-          formControlName="types"
-        />
-        <label for="out">Saída</label>
+        <label [for]="type.value">{{type.title}}</label>
       </div>
     </div>
     <div class="buttons ion-margin-top">

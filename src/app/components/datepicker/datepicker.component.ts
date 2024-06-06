@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { Month } from 'src/app/models/Enum/Month';
+import { Month, MonthUtils } from 'src/app/models/Enum/Month';
 
 @Component({
   selector: 'app-datepicker',
@@ -16,6 +16,8 @@ import { Month } from 'src/app/models/Enum/Month';
 export class DatepickerComponent {
   @Input() type: string = "";
   @Output() emitFilterValue: EventEmitter<any> = new EventEmitter<any>();
+
+  monthUtils!: MonthUtils;
 
   openedDatepicker: boolean = false;
 
@@ -51,7 +53,7 @@ export class DatepickerComponent {
   }
 
   setCurrentDate() {
-    this.filter = JSON.parse(JSON.stringify(this.currentDate))
+    this.filter = JSON.parse(JSON.stringify(this.currentDate));
   }
 
   getMonthToString(month: number | string): string {
@@ -67,9 +69,9 @@ export class DatepickerComponent {
     this.openedDatepicker = !this.openedDatepicker;
   }
 
-  getData(event: any) {
+  getData(event: any) {  
     if(this.type == "month-year") {
-      if(event.detail.value) {
+      if(event.detail.value && event.detail.value != undefined) {
         this.filter = {
           date: +(event.detail.value as string).substring(8,10),
           month: this.getMonthToString((+(event.detail.value as string).substring(5, 7))-1),
@@ -77,7 +79,7 @@ export class DatepickerComponent {
         }
       } else this.setCurrentDate();
     } else {
-      if(event.detail.value) {
+      if(event.detail.value && event.detail.value != undefined) {
         this.filter = {
           date: +(event.detail.value as string).substring(8,10),
           month: (+(event.detail.value as string).substring(5, 7))-1,
@@ -85,6 +87,7 @@ export class DatepickerComponent {
         }
       } else this.setCurrentDate();
     }
+
     this.emitFilterValue.emit(this.filter)
     this.openCloseDatepicker();
   }
