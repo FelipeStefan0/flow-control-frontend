@@ -5,6 +5,7 @@
   <ng-container *ngIf="actions$ | async as actions">
     <ng-container *ngFor="let action of actions">
       <app-actions-card
+        [action]="action"
         [date]="action.date"
         [value]="action.value"
         [description]="action.description"

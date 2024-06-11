@@ -5,7 +5,7 @@
     <span>Descrição: {{ description }}</span>
   </div>
   <div class="buttons">
-    <button (click)="editAction()">Editar</button>
-    <button (click)="deleteAction()">Deletar</button>
+    <button (click)="editAction(action)">Editar</button>
+    <button (click)="deleteAction(action.id)">Deletar</button>
   </div>
 </div>
