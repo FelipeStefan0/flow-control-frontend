@@ -17,26 +17,19 @@ export class ActionsCardComponent implements OnInit {
   @Input() description!: string;
   @Input() type!: string;
 
-  @Output() emitEditAction: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() emitDeleteAction: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  private as = inject(ActionService)
+  @Output() emitEditAction: EventEmitter<{id: number, action: Action}> = new EventEmitter<{id: number, action: Action}>();
+  @Output() emitDeleteAction: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {}
 
   ngOnInit() {}
 
-  editAction(action: Action) {
-    this.as.edit(action).subscribe((res) => {
-      console.log(res);
-    })
-    this.emitEditAction.emit(true);
+  editAction(id: number, action: Action) {
+    let event = {id: id, action: action}
+    this.emitEditAction.emit(event);
   }
 
   deleteAction(id: number) {
-    this.as.delete(id).subscribe((res) => {
-      console.log(res);
-    })
-    this.emitDeleteAction.emit(true);
+    this.emitDeleteAction.emit(id);
   }
 }

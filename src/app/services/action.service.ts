@@ -28,10 +28,10 @@ export class ActionService {
   }
 
   public delete(id: number) {
-    return this.http.delete<any>(`${environment.server}${this.endpoints.root()}?id=${id}`)
+    return this.http.delete<any>(`${environment.server}${this.endpoints.root()}/${id}`)
   } 
 
-  public edit(params: Action): Observable<any> {
-    return this.http.put(`${environment.server}${this.endpoints.root()}`, params)
+  public edit(id: number, params: Action): Observable<any> {
+    return this.http.put(`${environment.server}${this.endpoints.root()}/${id}`, params)
   }
 }

@@ -2,7 +2,7 @@
   <div class="datepicker-container">
     <app-datepicker type="" (emitFilterValue)="list($event)"></app-datepicker>
   </div>
-  <ng-container *ngIf="actions$ | async as actions">
+  <ng-container *ngIf="actions$ | async as actions;else noDataFound">
     <ng-container *ngFor="let action of actions">
       <app-actions-card
         [action]="action"
@@ -10,7 +10,16 @@
         [value]="action.value"
         [description]="action.description"
         [type]="action.type"
+        (emitEditAction)="editAction($event)"
+        (emitDeleteAction)="deleteAction($event)"
       ></app-actions-card>
     </ng-container>
   </ng-container>
+
+  <ng-template #noDataFound>
+    <div class="no-data-found">
+      <p>Não ocorreu movimentação hoje!</p>
+      <a href="/tabs/tab2">Cadastrar nova entrada ou saída +</a>
+    </div>
+  </ng-template>
 </ion-content>
