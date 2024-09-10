@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ActionService } from '../services/action.service';
 import { Action } from '../models/Interfaces/Action';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -11,6 +13,7 @@ import { Action } from '../models/Interfaces/Action';
 export class Tab3Page {
   actions$!: Observable<any>;
   service = inject(ActionService);
+  nav = inject(NavController)
   showCalendar: boolean = false;
   event!: {date: number, month: number, year: number};
 
@@ -47,14 +50,7 @@ export class Tab3Page {
   }
 
   editAction(event: {id: number, action: Action}) {
-    this.service.edit(event.id, event.action).subscribe({
-      next: (res: { data: null; message: string; status: number }) => {
-        this.toastr(res.message, "success");
-      },
-      error: (res: { data: null; message: string; status: number }) => {
-        this.toastr(res.message, "failure");
-      }
-    })
+    this.nav.navigateForward("/tabs/tab2", {state: event})
   }
 
   deleteAction(id: number) {

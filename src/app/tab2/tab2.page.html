@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="buttons ion-margin-top">
-      <button (click)="create()" [disabled]="form.invalid">Registrar</button>
+      <button (click)="!this.updatingAction ? create() : edit()" [disabled]="form.invalid">{{ !this.updatingAction ? 'Registrar' : 'Atualizar' }}</button>
       <button (click)="clear()" color="danger" *ngIf="!hiddenCleanButton">
         Limpar
       </button>

@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActionService } from '../services/action.service';
-import { map, tap } from 'rxjs';
 import { Action } from '../models/Interfaces/Action';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-tab2',
@@ -20,18 +20,21 @@ export class Tab2Page {
 
   date!: string;
 
-  actionTypes: { title: string; value: number }[] = [
+  updatingAction: boolean = false;
+  data: any;
+
+  actionTypes: { title: string; value: string }[] = [
     {
       title: 'Receita',
-      value: 0,
+      value: "IN",
     },
     {
       title: 'Despesa',
-      value: 1,
+      value: "OUT",
     },
   ];
 
-  constructor() {}
+  constructor(private location: Location) {}
 
   ngOnInit() {
     this.initForm();
@@ -47,6 +50,19 @@ export class Tab2Page {
     //   return value;
     // })
     // this.form.get("amount")?.setValue(value);
+  }
+
+  ionViewWillEnter() {
+    this.data = this.location.getState();  
+    const [year, month, day, hour, minute, second, millisecond] = this.data.action.date;
+    if(this.data.action) { 
+      delete this.data.action.id;
+      this.updatingAction = true; 
+      this.data.action.date = new Date(year, month-1, day, hour, minute, second, millisecond)
+      this.data.action.date = new Date(this.data.action.date - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -1);
+      this.date = this.data.action.date;
+      this.form.setValue(this.data.action);
+    }
   }
 
   initForm() {
@@ -111,10 +127,26 @@ export class Tab2Page {
     });
   }
 
+  edit() {
+    this.service.edit(this.data.id, this.form.getRawValue()).subscribe({
+      next: (res: { data: null; message: string; status: number }) => {
+        this.toastr(res.message, "success");
+      },
+      error: (res: { data: null; message: string; status: number }) => {
+        this.toastr(res.message, "failure");
+      },
+      complete: () => {
+        this.clear();
+        this.updatingAction = false;
+      },
+    })    
+  }
+
   clear() {
     this.form.reset();
     this.date = '';
     this.hiddenCleanButton = true;
+    this.updatingAction = false;
   }
 
   toastr(message: string, type?: string) {
