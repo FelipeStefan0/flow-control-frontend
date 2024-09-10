@@ -15,7 +15,9 @@ export class Tab3Page {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter() {
     let date = new Date()
     let event = {date: date.getDate(), month: date.getMonth(), year: date.getFullYear()}
     this.list(event);

@@ -16,7 +16,9 @@ export class Tab1Page {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter() {
     this.getReport(
       this.stringToEnumName.translateEnumName(
         new DatepickerComponent().getMonthToString(new Date().getMonth())
