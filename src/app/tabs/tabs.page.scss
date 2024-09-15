@@ -4,10 +4,6 @@
     }
 }
 
-ion-tab-bar {
-    --background: rgb(241, 241, 241);
-}
-
-ion-tab-button {
+ion-tab-bar, ion-tab-button {
     --background: var(--background-secondary);
 }
