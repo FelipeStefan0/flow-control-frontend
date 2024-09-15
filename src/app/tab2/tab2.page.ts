@@ -54,14 +54,16 @@ export class Tab2Page {
 
   ionViewWillEnter() {
     this.data = this.location.getState();  
-    const [year, month, day, hour, minute, second, millisecond] = this.data.action.date;
-    if(this.data.action) { 
-      delete this.data.action.id;
-      this.updatingAction = true; 
-      this.data.action.date = new Date(year, month-1, day, hour, minute, second, millisecond)
-      this.data.action.date = new Date(this.data.action.date - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -1);
-      this.date = this.data.action.date;
-      this.form.setValue(this.data.action);
+    if(Object.keys(this.data).length > 1) {
+      const [year, month, day, hour, minute, second, millisecond] = this.data.action.date;
+      if(this.data.action) { 
+        delete this.data.action.id;
+        this.data.action.date = new Date(year, month-1, day, hour, minute, second, millisecond*0.000001);
+        this.updatingAction = true; 
+        this.data.action.date = new Date(this.data.action.date - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, -1);
+        this.date = this.data.action.date;
+        this.form.setValue(this.data.action);
+      }
     }
   }
 
@@ -114,7 +116,7 @@ export class Tab2Page {
   // }
 
   create() {
-    this.service.create(this.form.value).subscribe({
+    this.service.create(this.form.getRawValue()).subscribe({
       next: (res: { data: Action[]; message: string; status: number }) => {
         this.toastr(res.message, 'success');
       },
