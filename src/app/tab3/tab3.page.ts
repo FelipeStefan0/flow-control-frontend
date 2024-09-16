@@ -49,21 +49,21 @@ export class Tab3Page {
     this.showCalendar = !this.showCalendar;
   }
 
-  editAction(event: {id: number, action: Action}) {
-    this.nav.navigateForward("/tabs/tab2", {state: event})
-  }
+  // editAction(event: {id: number, action: Action}) {
+  //   this.nav.navigateForward("/tabs/tab2", {state: event})
+  // }
 
-  deleteAction(id: number) {
-    this.service.delete(id).subscribe({
-      next: (res: { data: null; message: string; status: number }) => {
-        this.toastr(res.message, "success");
-        this.list(this.event);
-      },
-      error: (res: { data: null; message: string; status: number }) => {
-        this.toastr(res.message, "failure");
-      }
-    })
-  }
+  // deleteAction(id: number) {
+  //   this.service.delete(id).subscribe({
+  //     next: (res: { data: null; message: string; status: number }) => {
+  //       this.toastr(res.message, "success");
+  //       this.list(this.event);
+  //     },
+  //     error: (res: { data: null; message: string; status: number }) => {
+  //       this.toastr(res.message, "failure");
+  //     }
+  //   })
+  // }
 
   toastr(message: string, type?: string) {
     let body: Element = document.getElementsByClassName('ion-padding')[0];
