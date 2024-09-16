@@ -41,6 +41,8 @@ export class DatepickerComponent {
     year: 0
   }
 
+  month: number = new Date().getMonth()+1;
+
   constructor() { }
 
   ngOnInit() {
@@ -58,6 +60,7 @@ export class DatepickerComponent {
 
   getMonthToString(month: number | string): string {
     if(typeof month == "string") return "";
+    this.month = month+1;
     let value = Object.values(Month).length;
     for (let i = 0; i < value; i++)
       if (Object.values(Month).indexOf(Object.values(Month)[i]) == month)
@@ -65,11 +68,11 @@ export class DatepickerComponent {
     return "";
   }
 
-  openCloseDatepicker() {
+  openCloseDatepicker() {    
     this.openedDatepicker = !this.openedDatepicker;
   }
 
-  getData(event: any) {  
+  getData(event: any) {      
     if(this.type == "month-year") {
       if(event.detail.value && event.detail.value != undefined) {
         this.filter = {
