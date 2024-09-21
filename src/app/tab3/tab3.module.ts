@@ -7,6 +7,7 @@ import { Tab3Page } from './tab3.page';
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 import { ActionsCardComponent } from '../components/actions-card/actions-card.component';
 import { DatepickerComponent } from '../components/datepicker/datepicker.component';
+import { IonSkeletonText } from '@ionic/angular/standalone';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { DatepickerComponent } from '../components/datepicker/datepicker.compone
     FormsModule,
     Tab3PageRoutingModule,
     ActionsCardComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    IonSkeletonText
   ],
   declarations: [Tab3Page]
 })

@@ -13,6 +13,7 @@ export class Tab1Page {
   service = inject(ReportService);
   stringToEnumName: MonthUtils = new MonthUtils();
   report!: Report;
+  loading: boolean = true;
 
   constructor() {}
 
@@ -28,6 +29,7 @@ export class Tab1Page {
   }
 
   getReport(enumName: string, year: number) {
+    this.loading = true;
     this.service
       .getReport({ month: enumName, year: year })
       .subscribe({
@@ -43,6 +45,9 @@ export class Tab1Page {
             month: Month.JANUARY,
             year: 0
           };
+          this.loading = false;
+        }, complete: () => {
+          this.loading = false;
         }
       });
   }

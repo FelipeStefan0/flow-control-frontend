@@ -1,32 +1,41 @@
+.loading_report_card,
 .report_card {
-    background-color: var(--background-secondary);
-    margin: 1.5rem 0 2.5rem 0;
-    padding: 1rem 1.25rem;
-    border-radius: 4px;
+  background-color: var(--background-secondary);
+  margin: 1.5rem 0 2.5rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
 
-    p {
-        display: flex;
-        justify-content: space-between;
+  p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-        &:first-child {
-            color: var(--font-success);
-            margin-bottom: 4px;
-        }
-
-        &:nth-child(2) {
-            color: var(--font-failure);
-            margin-bottom: 4px;
-        }
-
-        &:last-child {
-            color: var(--font-primary);
-            font-size: 1.25rem;
-            margin-bottom: 4px;
-        }
+    &:first-child {
+      color: var(--font-success);
+      margin-bottom: 4px;
     }
 
-    hr {
-        background-color: var(--lines);
-        margin: .75rem 0;
+    &:nth-child(2) {
+      color: var(--font-failure);
+      margin-bottom: 4px;
     }
+
+    &:last-child {
+      color: var(--font-primary);
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+  }
+
+  hr {
+    background-color: var(--lines);
+    margin: 0.75rem 0;
+  }
+}
+
+.loading_report_card {
+  .skeleton {
+    width: 100%;
+    height: 1.65rem;
+  }
 }

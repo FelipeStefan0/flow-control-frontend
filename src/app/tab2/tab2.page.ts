@@ -34,6 +34,8 @@ export class Tab2Page {
     },
   ];
 
+  loading: boolean = false;
+
   constructor(private location: Location) {}
 
   ngOnInit() {
@@ -116,15 +118,18 @@ export class Tab2Page {
   // }
 
   create() {
+    this.loading = true;
     this.service.create(this.form.getRawValue()).subscribe({
       next: (res: { data: Action[]; message: string; status: number }) => {
-        this.toastr(res.message, 'success');
+        // this.toastr(res.message, 'success');
       },
       error: (err: { data: Action[]; message: string; status: number }) => { 
-        this.toastr(err.message, 'failure');
+        // this.toastr(err.message, 'failure');
+        this.loading = false;
       },
       complete: () => {
         this.clear();
+        this.loading = false;
       },
     });
   }
@@ -132,10 +137,10 @@ export class Tab2Page {
   edit() {
     this.service.edit(this.data.id, this.form.getRawValue()).subscribe({
       next: (res: { data: null; message: string; status: number }) => {
-        this.toastr(res.message, "success");
+        // this.toastr(res.message, "success");
       },
       error: (res: { data: null; message: string; status: number }) => {
-        this.toastr(res.message, "failure");
+        // this.toastr(res.message, "failure");
       },
       complete: () => {
         this.clear();
@@ -151,35 +156,35 @@ export class Tab2Page {
     this.updatingAction = false;
   }
 
-  toastr(message: string, type?: string) {
-    let body: Element = document.getElementsByClassName('ion-padding')[0];
-    let div: HTMLElement = document.createElement('div');
-    let text: HTMLElement = document.createElement('span');
+  // toastr(message: string, type?: string) {
+  //   let body: Element = document.getElementsByClassName('ion-padding')[0];
+  //   let div: HTMLElement = document.createElement('div');
+  //   let text: HTMLElement = document.createElement('span');
 
-    text.innerHTML = message;
-    div.appendChild(text);
+  //   text.innerHTML = message;
+  //   div.appendChild(text);
 
-    if (type == 'success') div.style.backgroundColor = 'var(--font-success)';
-    else if (type == 'failure') div.style.backgroundColor = 'var(--font-failure)';
+  //   if (type == 'success') div.style.backgroundColor = 'var(--font-success)';
+  //   else if (type == 'failure') div.style.backgroundColor = 'var(--font-failure)';
 
-    div.style.color = 'var(--font-tertiary)';
-    div.style.width = '80%';
-    div.style.height = '2.5rem';
-    div.style.padding = '.2rem';
-    div.style.borderRadius = '.5rem';
-    div.style.position = 'absolute';
-    div.style.top = '1.5rem';
-    div.style.left = '50%';
-    div.style.transform = 'translateX(-50%)';
-    div.style.zIndex = '999';
-    div.style.display = 'flex';
-    div.style.justifyContent = 'center';
-    div.style.alignItems = 'center';
+  //   div.style.color = 'var(--font-tertiary)';
+  //   div.style.width = '80%';
+  //   div.style.height = '2.5rem';
+  //   div.style.padding = '.2rem';
+  //   div.style.borderRadius = '.5rem';
+  //   div.style.position = 'absolute';
+  //   div.style.top = '1.5rem';
+  //   div.style.left = '50%';
+  //   div.style.transform = 'translateX(-50%)';
+  //   div.style.zIndex = '999';
+  //   div.style.display = 'flex';
+  //   div.style.justifyContent = 'center';
+  //   div.style.alignItems = 'center';
 
-    body.appendChild(div);
+  //   body.appendChild(div);
 
-    setTimeout(() => {
-      body.removeChild(div);
-    }, 3000);
-  }
+  //   setTimeout(() => {
+  //     body.removeChild(div);
+  //   }, 3000);
+  // }
 }

@@ -72,7 +72,7 @@ export class DatepickerComponent {
     this.openedDatepicker = !this.openedDatepicker;
   }
 
-  getData(event: any) {      
+  getData(event: any) {          
     if(this.type == "month-year") {
       if(event.detail.value && event.detail.value != undefined) {
         this.filter = {
@@ -82,15 +82,17 @@ export class DatepickerComponent {
         }
       } else this.setCurrentDate();
     } else {
-      if(event.detail.value && event.detail.value != undefined) {
+      if(event.detail.value && event.detail.value != undefined && (event.detail.value as string).length == 10) {
         this.filter = {
           date: +(event.detail.value as string).substring(8,10),
           month: (+(event.detail.value as string).substring(5, 7))-1,
           year: +(event.detail.value as string).substring(0,4)
         }
-      } else this.setCurrentDate();
+      } else {
+        this.filter = {date: new Date().getDate(), month: new Date().getMonth(), year: new Date().getFullYear()};
+      }
     }
-
+    
     this.emitFilterValue.emit(this.filter)
     this.openCloseDatepicker();
   }

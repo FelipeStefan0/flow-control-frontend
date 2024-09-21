@@ -3,7 +3,7 @@
     type="month-year"
     (emitFilterValue)="emitFilterValue($event)"
   ></app-datepicker>
-  <app-report-card [report]="report"></app-report-card>
+  <app-report-card [report]="report" [loading]="loading"></app-report-card>
 
   <div class="buttons">
     <button [routerLink]="['/tabs/tab2']">

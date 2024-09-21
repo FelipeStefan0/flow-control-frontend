@@ -42,8 +42,9 @@
       </div>
     </div>
     <div class="buttons ion-margin-top">
-      <button (click)="!this.updatingAction ? create() : edit()" [disabled]="form.invalid">{{ !this.updatingAction ? 'Registrar' : 'Atualizar' }}</button>
-      <button (click)="clear()" color="danger" *ngIf="!hiddenCleanButton">
+      <button class="loading" *ngIf="loading" [disabled]="true"><img src="assets/gifs/loading.gif" alt="Carregando"></button>
+      <button class="register" *ngIf="!loading" (click)="!this.updatingAction ? create() : edit()" [disabled]="form.invalid">{{ !this.updatingAction ? 'Registrar' : 'Atualizar' }}</button>
+      <button class="clean" *ngIf="!hiddenCleanButton && !loading" (click)="clear()" color="danger">
         Limpar
       </button>
     </div>

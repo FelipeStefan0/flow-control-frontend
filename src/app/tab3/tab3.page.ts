@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ActionService } from '../services/action.service';
 import { Action } from '../models/Interfaces/Action';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { DatepickerComponent } from '../components/datepicker/datepicker.component';
 
 @Component({
   selector: 'app-tab3',
@@ -11,11 +12,14 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page {
-  actions$!: Observable<any>;
+  actions!: any[] | null;
   service = inject(ActionService);
   nav = inject(NavController)
   showCalendar: boolean = false;
   event!: {date: number, month: number, year: number};
+  loading: boolean = true;
+
+  @ViewChild('datepicker') datepicker!: DatepickerComponent;
 
   constructor() {}
 
@@ -28,9 +32,12 @@ export class Tab3Page {
       year: new Date().getFullYear()
     }
     this.list(this.event);
+    this.datepicker.setCurrentDate();
   }
 
-  list(event?: {date: number, month: number, year: number}) {
+  list(event?: {date: number, month: number, year: number}) {  
+    this.loading = true;
+    
     let date: Date = new Date();
     
     if(event) {
@@ -38,11 +45,22 @@ export class Tab3Page {
       date.setHours(0-3, 0, 0, 0)
     }
     
-    this.actions$ = this.service.listAll({date: date.toISOString().slice(0, -1)}).pipe(
+    this.service.listAll({date: date.toISOString().slice(0, -1)}).pipe(
       map((res: any) => {
         return res.data;
       })
-    );
+    ).subscribe({
+      next: (data: any) => {
+        this.actions = data
+      },
+      error: () => {
+        this.loading = false;
+        this.actions = null;
+      },
+      complete: () => {
+        this.loading = false;
+      }
+    });
   }
 
   openClose() {
@@ -65,35 +83,35 @@ export class Tab3Page {
   //   })
   // }
 
-  toastr(message: string, type?: string) {
-    let body: Element = document.getElementsByClassName('ion-padding')[0];
-    let div: HTMLElement = document.createElement('div');
-    let text: HTMLElement = document.createElement('span');
+  // toastr(message: string, type?: string) {
+  //   let body: Element = document.getElementsByClassName('ion-padding')[0];
+  //   let div: HTMLElement = document.createElement('div');
+  //   let text: HTMLElement = document.createElement('span');
 
-    text.innerHTML = message;
-    div.appendChild(text);
+  //   text.innerHTML = message;
+  //   div.appendChild(text);
 
-    if (type == 'success') div.style.backgroundColor = 'var(--font-success)';
-    else if (type == 'failure') div.style.backgroundColor = 'var(--font-failure)';
+  //   if (type == 'success') div.style.backgroundColor = 'var(--font-success)';
+  //   else if (type == 'failure') div.style.backgroundColor = 'var(--font-failure)';
 
-    div.style.color = 'var(--font-tertiary)';
-    div.style.width = '80%';
-    div.style.height = '2.5rem';
-    div.style.padding = '.2rem';
-    div.style.borderRadius = '.5rem';
-    div.style.position = 'absolute';
-    div.style.top = '1.5rem';
-    div.style.left = '50%';
-    div.style.transform = 'translateX(-50%)';
-    div.style.zIndex = '999';
-    div.style.display = 'flex';
-    div.style.justifyContent = 'center';
-    div.style.alignItems = 'center';
+  //   div.style.color = 'var(--font-tertiary)';
+  //   div.style.width = '80%';
+  //   div.style.height = '2.5rem';
+  //   div.style.padding = '.2rem';
+  //   div.style.borderRadius = '.5rem';
+  //   div.style.position = 'absolute';
+  //   div.style.top = '1.5rem';
+  //   div.style.left = '50%';
+  //   div.style.transform = 'translateX(-50%)';
+  //   div.style.zIndex = '999';
+  //   div.style.display = 'flex';
+  //   div.style.justifyContent = 'center';
+  //   div.style.alignItems = 'center';
 
-    body.appendChild(div);
+  //   body.appendChild(div);
 
-    setTimeout(() => {
-      body.removeChild(div);
-    }, 3000);
-  }
+  //   setTimeout(() => {
+  //     body.removeChild(div);
+  //   }, 3000);
+  // }
 }

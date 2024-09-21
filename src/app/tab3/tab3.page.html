@@ -1,25 +1,34 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="datepicker-container">
-    <app-datepicker type="" (emitFilterValue)="list($event)"></app-datepicker>
+    <app-datepicker #datepicker type="" (emitFilterValue)="list($event)"></app-datepicker>
   </div>
-  <ng-container *ngIf="actions$ | async as actions;else noDataFound">
-    <ng-container *ngFor="let action of actions">
-      <app-actions-card
-        [action]="action"
-        [date]="action.date"
-        [value]="action.value"
-        [description]="action.description"
-        [type]="action.type"
-      ></app-actions-card>
-      <!-- (emitEditAction)="editAction($event)"
-      (emitDeleteAction)="deleteAction($event)" -->
-    </ng-container>
+
+  <ng-container *ngIf="loading">
+    <div class="load">
+      <img src="assets/gifs/loading.gif" alt="Carregando">
+    </div>
   </ng-container>
 
-  <ng-template #noDataFound>
-    <div class="no-data-found">
-      <p>Não ocorreu movimentação hoje!</p>
-      <a href="/tabs/tab2">Cadastrar nova entrada ou saída +</a>
-    </div>
-  </ng-template>
+  <ng-container *ngIf="!loading">
+    <ng-container *ngIf="actions;else noDataFound">
+      <ng-container *ngFor="let action of actions">
+        <app-actions-card
+          [action]="action"
+          [date]="action.date"
+          [value]="action.value"
+          [description]="action.description"
+          [type]="action.type"
+        ></app-actions-card>
+        <!-- (emitEditAction)="editAction($event)"
+        (emitDeleteAction)="deleteAction($event)" -->
+      </ng-container>
+    </ng-container>
+  
+    <ng-template #noDataFound>
+      <div class="no-data-found">
+        <p>Não ocorreu movimentação hoje!</p>
+        <a href="/tabs/tab2">Cadastrar nova entrada ou saída +</a>
+      </div>
+    </ng-template>
+  </ng-container>
 </ion-content>
