@@ -1,5 +1,5 @@
 {
-  "name": "flowControlFront",
+  "name": "Controle de Fluxo",
   "integrations": {
     "capacitor": {},
     "cordova": {}
