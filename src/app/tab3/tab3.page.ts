@@ -3,7 +3,7 @@ import { Observable, map } from 'rxjs';
 import { ActionService } from '../services/action.service';
 import { Action } from '../models/Interfaces/Action';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { DatepickerComponent } from '../components/datepicker/datepicker.component';
 
 @Component({
@@ -21,7 +21,7 @@ export class Tab3Page {
 
   @ViewChild('datepicker') datepicker!: DatepickerComponent;
 
-  constructor() {}
+  constructor(private toastController: ToastController) {}
 
   ngOnInit() {}
 
@@ -67,19 +67,30 @@ export class Tab3Page {
     this.showCalendar = !this.showCalendar;
   }
 
-  // editAction(event: {id: number, action: Action}) {
-  //   this.nav.navigateForward("/tabs/tab2", {state: event})
-  // }
+  editAction(event: {id: number, action: Action}) {
+    this.nav.navigateForward("/tabs/tab2", {state: event})
+  }
 
-  // deleteAction(id: number) {
-  //   this.service.delete(id).subscribe({
-  //     next: (res: { data: null; message: string; status: number }) => {
-  //       this.toastr(res.message, "success");
-  //       this.list(this.event);
-  //     },
-  //     error: (res: { data: null; message: string; status: number }) => {
-  //       this.toastr(res.message, "failure");
-  //     }
-  //   })
-  // }
+  deleteAction(id: number) {
+    this.service.delete(id).subscribe({
+      next: (res: { data: null; message: string; status: number }) => {
+        this.presentToast(res.message, true);
+        this.list(this.event);
+      },
+      error: (res: { data: null; message: string; status: number }) => {
+        this.presentToast(res.message, false);
+      }
+    })
+  }
+
+  async presentToast(message: string, status: boolean) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'top',
+      cssClass: status ? 'success' : 'failure'
+    })
+
+    await toast.present();
+  }
 }

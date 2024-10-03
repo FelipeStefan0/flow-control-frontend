@@ -1,5 +1,5 @@
 <div class="card" [ngClass]="type == 'IN' ? 'in_card' : 'out_card'">
-  <button class="more" (click)="openClose()">
+  <button class="more" (click)="openModal()">
     <span></span><span></span><span></span>
   </button>
   <span class="hour">{{ date[3] + ":" + [date[4] < 10 ? "0" + date[4] : date[4]] }}</span>
@@ -8,28 +8,3 @@
     <span>Descrição: {{ description }}</span>
   </div>
 </div>
-
-<ion-modal [isOpen]="isModalOpen" [initialBreakpoint]="0.3" [backdropDismiss]="false"> 
-  <ng-template>
-    <ion-header class="ion-padding">
-      <ion-toolbar>
-        <ion-title>Mais</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="openClose()" style="color: var(--button-secondary);">Cancelar</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <div class="buttons">
-        <button (click)="editAction(action.id, action)">
-          Editar
-          <img src="/assets/icons/edit.svg" alt="Atualizar" />
-        </button>
-        <button (click)="deleteAction(action.id)">
-          Deletar
-          <img src="/assets/icons/trash.svg" alt="Deletar" />
-        </button>
-      </div>
-    </ion-content>
-  </ng-template>
-</ion-modal>

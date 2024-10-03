@@ -10,7 +10,9 @@ import {
   IonButton,
   IonToolbar,
   IonContent,
+  ModalController,
 } from '@ionic/angular/standalone';
+import { ButtonsModalComponent } from '../buttons-modal/buttons-modal.component';
 
 @Component({
   selector: 'app-actions-card',
@@ -39,11 +41,25 @@ export class ActionsCardComponent implements OnInit {
     new EventEmitter<{ id: number; action: Action }>();
   @Output() emitDeleteAction: EventEmitter<number> = new EventEmitter<number>();
 
-  isModalOpen: boolean = false;
-
-  constructor() {}
+  constructor(private modalController: ModalController) {}
 
   ngOnInit() {}
+
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: ButtonsModalComponent,
+      initialBreakpoint: 0.3
+    })
+    modal.present();
+
+    const { data } = await modal.onWillDismiss();
+
+    if (data == "edit") {
+      this.editAction(this.action.id, this.action);
+    } else if (data == "delete") {
+      this.deleteAction(this.action.id);
+    } 
+  }
 
   editAction(id: number, action: Action) {
     let event = { id: id, action: action };
@@ -52,9 +68,5 @@ export class ActionsCardComponent implements OnInit {
 
   deleteAction(id: number) {
     this.emitDeleteAction.emit(id);
-  }
-
-  openClose() {
-    this.isModalOpen = !this.isModalOpen;
   }
 }

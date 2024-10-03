@@ -1,0 +1,20 @@
+<ion-header class="ion-padding">
+  <ion-toolbar>
+    <ion-title>Mais</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()" style="color: var(--button-secondary);">Cancelar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="buttons">
+    <button (click)="editAction()">
+      Editar
+      <img src="/assets/icons/edit.svg" alt="Atualizar" />
+    </button>
+    <button (click)="deleteAction()">
+      Deletar
+      <img src="/assets/icons/trash.svg" alt="Deletar" />
+    </button>
+  </div>
+</ion-content>
