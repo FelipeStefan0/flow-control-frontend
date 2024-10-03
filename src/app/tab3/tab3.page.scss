@@ -35,3 +35,28 @@ ion-content {
     height: 3rem;
   }
 }
+
+.captions {
+  display: flex;
+  gap: 1rem;
+  margin: 1.2rem 0;
+
+  .caption {
+    &:first-child::before, &:last-child::before {
+      content: '';
+      display: inline-block;
+      width: .8rem;
+      height: .8rem;
+      border-radius: 50%;
+      margin-right: .5rem;
+    }
+
+    &:first-child::before {
+      background-color: var(--font-success);
+    }
+
+    &:last-child::before {
+      background-color: var(--font-failure);
+    }
+  }
+}
