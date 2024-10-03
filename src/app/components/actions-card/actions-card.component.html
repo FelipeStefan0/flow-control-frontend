@@ -21,11 +21,11 @@
     </ion-header>
     <ion-content>
       <div class="buttons">
-        <button>
+        <button (click)="editAction(action.id, action)">
           Editar
           <img src="/assets/icons/edit.svg" alt="Atualizar" />
         </button>
-        <button>
+        <button (click)="deleteAction(action.id)">
           Deletar
           <img src="/assets/icons/trash.svg" alt="Deletar" />
         </button>

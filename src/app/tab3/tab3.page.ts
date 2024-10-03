@@ -82,36 +82,4 @@ export class Tab3Page {
   //     }
   //   })
   // }
-
-  // toastr(message: string, type?: string) {
-  //   let body: Element = document.getElementsByClassName('ion-padding')[0];
-  //   let div: HTMLElement = document.createElement('div');
-  //   let text: HTMLElement = document.createElement('span');
-
-  //   text.innerHTML = message;
-  //   div.appendChild(text);
-
-  //   if (type == 'success') div.style.backgroundColor = 'var(--font-success)';
-  //   else if (type == 'failure') div.style.backgroundColor = 'var(--font-failure)';
-
-  //   div.style.color = 'var(--font-tertiary)';
-  //   div.style.width = '80%';
-  //   div.style.height = '2.5rem';
-  //   div.style.padding = '.2rem';
-  //   div.style.borderRadius = '.5rem';
-  //   div.style.position = 'absolute';
-  //   div.style.top = '1.5rem';
-  //   div.style.left = '50%';
-  //   div.style.transform = 'translateX(-50%)';
-  //   div.style.zIndex = '999';
-  //   div.style.display = 'flex';
-  //   div.style.justifyContent = 'center';
-  //   div.style.alignItems = 'center';
-
-  //   body.appendChild(div);
-
-  //   setTimeout(() => {
-  //     body.removeChild(div);
-  //   }, 3000);
-  // }
 }

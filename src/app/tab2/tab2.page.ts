@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActionService } from '../services/action.service';
 import { Action } from '../models/Interfaces/Action';
 import { Location } from '@angular/common';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -36,7 +37,7 @@ export class Tab2Page {
 
   loading: boolean = false;
 
-  constructor(private location: Location) {}
+  constructor(private location: Location, private toastController: ToastController) {}
 
   ngOnInit() {
     this.initForm();
@@ -121,10 +122,11 @@ export class Tab2Page {
     this.loading = true;
     this.service.create(this.form.getRawValue()).subscribe({
       next: (res: { data: Action[]; message: string; status: number }) => {
-        // this.toastr(res.message, 'success');
+        this.presentToast(res.message, true);
+
       },
       error: (err: { data: Action[]; message: string; status: number }) => { 
-        // this.toastr(err.message, 'failure');
+        this.presentToast(err.message, false);
         this.loading = false;
       },
       complete: () => {
@@ -137,10 +139,10 @@ export class Tab2Page {
   edit() {
     this.service.edit(this.data.id, this.form.getRawValue()).subscribe({
       next: (res: { data: null; message: string; status: number }) => {
-        // this.toastr(res.message, "success");
+        this.presentToast(res.message, true);
       },
-      error: (res: { data: null; message: string; status: number }) => {
-        // this.toastr(res.message, "failure");
+      error: (err: { data: null; message: string; status: number }) => {
+        this.presentToast(err.message, false);
       },
       complete: () => {
         this.clear();
@@ -156,35 +158,14 @@ export class Tab2Page {
     this.updatingAction = false;
   }
 
-  // toastr(message: string, type?: string) {
-  //   let body: Element = document.getElementsByClassName('ion-padding')[0];
-  //   let div: HTMLElement = document.createElement('div');
-  //   let text: HTMLElement = document.createElement('span');
+  async presentToast(message: string, status: boolean) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'top',
+      cssClass: status ? 'success' : 'failure'
+    })
 
-  //   text.innerHTML = message;
-  //   div.appendChild(text);
-
-  //   if (type == 'success') div.style.backgroundColor = 'var(--font-success)';
-  //   else if (type == 'failure') div.style.backgroundColor = 'var(--font-failure)';
-
-  //   div.style.color = 'var(--font-tertiary)';
-  //   div.style.width = '80%';
-  //   div.style.height = '2.5rem';
-  //   div.style.padding = '.2rem';
-  //   div.style.borderRadius = '.5rem';
-  //   div.style.position = 'absolute';
-  //   div.style.top = '1.5rem';
-  //   div.style.left = '50%';
-  //   div.style.transform = 'translateX(-50%)';
-  //   div.style.zIndex = '999';
-  //   div.style.display = 'flex';
-  //   div.style.justifyContent = 'center';
-  //   div.style.alignItems = 'center';
-
-  //   body.appendChild(div);
-
-  //   setTimeout(() => {
-  //     body.removeChild(div);
-  //   }, 3000);
-  // }
+    await toast.present();
+  }
 }

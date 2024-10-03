@@ -95,3 +95,11 @@ button:disabled {
 p {
     margin: 0;
 }
+
+.success {
+    --background: var(--font-success);
+}
+
+.failure {
+    --background: var(--font-failure);
+}
