@@ -3,6 +3,11 @@
     <app-datepicker #datepicker type="" (emitFilterValue)="list($event)"></app-datepicker>
   </div>
 
+  <div class="caption">
+    <span>Entrada</span>
+    <span>Saída</span>
+  </div>
+
   <ng-container *ngIf="loading">
     <div class="load">
       <img src="assets/gifs/loading.gif" alt="Carregando">

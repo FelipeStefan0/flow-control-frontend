@@ -4,20 +4,37 @@
   display: flex;
   gap: 0.75rem;
   flex-direction: column;
-  border-radius: 4px;
+  border-radius: .25rem;
   margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.more {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0;
+  gap: .3rem;
+  position: absolute;
+  top: .75rem;
+  right: .5rem;
+
+  span {
+    background-color: var(--font-quaternary);
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+  }
 }
 
 .in_card {
-  border-top: 5px solid #4e894dc4;
+  border-top: .3125rem solid #4e894dc4;
 }
 
 .out_card {
-  border-top: 5px solid #8c2c2cc4;
+  border-top: .3125rem solid #8c2c2cc4;
 }
 
 .hour {
-  font-size: 12px;
+  font-size: .75rem;
   color: var(--font-secondary);
 }
 
@@ -28,39 +45,47 @@
 
 .buttons {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  row-gap: 1.25rem;
 
   button {
-    width: 47%;
 
-    &:nth-child(1) {
-      background-color: var(--button-primary);
-      color: var(--font-tertiary);
-    }
+      &:first-child {
+        background-color: var(--button-primary);
 
-    &:nth-child(1):hover {
-      background-color: var(--button-primary-hover);
-    }
+        &:hover {
+          background-color: var(--button-primary-hover);
+        }
 
-    &:nth-child(1):active {
-      background-color: var(--button-primary-active);
-    }
+        &:active {
+          background-color: var(--button-primary-active);
+        }
 
-    &:nth-child(1):disabled {
-      background-color: var(--button-tertiary);
-      color: var(--lines);
-    }
+        img {
+          width: 1.25rem;
+          height: 1.25rem;
+          margin-left: 4px;
+          filter: var(--filter-to-white);
+        }
+      }
 
-    &:nth-child(2) {
-      background-color: var(--button-secondary);
-    }
+      &:last-child {
+        background-color: var(--button-secondary);
 
-    &:nth-child(2):hover {
-      background-color: var(--button-secondary-hover);
-    }
+        &:hover {
+          background-color: var(--button-secondary-hover);
+        }
 
-    &:nth-child(2):active {
-      background-color: var(--button-secondary-active);
-    }
+        &:active {
+          background-color: var(--button-secondary-active);
+        }
+        
+        img {
+          width: 1rem;
+          height: 1rem;
+          margin-left: 4px;
+          filter: var(--filter-to-white);
+        }
+      }
   }
 }
